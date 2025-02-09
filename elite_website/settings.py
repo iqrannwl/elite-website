@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "contacts",
     "events",
     "phonenumber_field",
+    "blogs"
 ]
 
 MIDDLEWARE = [

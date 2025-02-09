@@ -1,10 +1,9 @@
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
 
-class Event(models.Model):
-    image=models.ImageField(upload_to="envents/")
+# Create your models here.
+class Blog(models.Model):
+    image=models.ImageField(upload_to="blogs/")
     title=models.CharField(max_length=255)
     date=models.DateTimeField()
-    location=models.CharField(max_length=255)
     description=RichTextUploadingField()
-

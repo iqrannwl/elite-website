@@ -31,6 +31,7 @@ urlpatterns = [
     path('events/', include('events.urls')),
     path('gallery/', include('gallery.urls')),
     path('contact/', include('contacts.urls')),
+    path('blogs/', include('blogs.urls')),
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 

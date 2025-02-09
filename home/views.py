@@ -4,6 +4,7 @@ from about.models import AboutModel
 from courses.models import CoursePage
 from teachers.models import Teacher
 from gallery.models import Gallery, ImageType
+from events.models import Event
 from utils import utils
 
 def home_page(request):
@@ -17,6 +18,7 @@ def home_page(request):
     teacher = Teacher.objects.all()
     gallery = Gallery.objects.prefetch_related('image_type')
     image_type = ImageType.objects.all()
+    events= Event.objects.all()
     return render(request, 'home.html', {
         "slider1": slider1,
         "slider2": slider2,
@@ -26,5 +28,6 @@ def home_page(request):
         "teachers": teacher,
         "image_types": image_type,
         "gallery_list": gallery,
+        "events":events,
         **utils.get_context()
     })

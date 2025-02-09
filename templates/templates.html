@@ -169,42 +169,20 @@
             <div class="row">
               <div class="col-md-6">
                 <h3 class="text-uppercase line-bottom mt-0 line-height-1"><i class="fa fa-calendar mr-10"></i>Upcoming <span class="text-theme-color-2">Events</span></h3>
+                {%for event in events%}
                 <article class="post media-post clearfix pb-0 mb-10">
                   <a href="#" class="post-thumb mr-20"><img alt="" src="{%static 'images/event/1.jpg' %}"></a>
                   <div class="post-right">
-                    <h4 class="mt-0 mb-5"><a href="#">Upcoming Event Title</a></h4>
+                    <h4 class="mt-0 mb-5"><a href="#">{{event.title}}</a></h4>
                     <ul class="list-inline font-12 mb-5">
-                      <li class="pr-0"><i class="fa fa-calendar mr-5"></i> June 26, 2016 |</li>
-                      <li class="pl-5"><i class="fa fa-map-marker mr-5"></i>New York</li>
+                      <li class="pr-0"><i class="fa fa-calendar mr-5"></i> {{event.date|date}} |</li>
+                      <li class="pl-5"><i class="fa fa-map-marker mr-5"></i>{{event.location}}</li>
                     </ul>
-                    <p class="mb-0 font-13">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas eveniet, nemo dicta. Ullam nam.</p>
-                    <a class="text-theme-colored font-13" href="#">Read More →</a>
+                    <p class="mb-0 font-13">{{event.description|safe}}</p>
+                    <a class="text-theme-colored font-13" href="{% url 'event_detail' event.id %}">Read More →</a>
                   </div>
                 </article>
-                <article class="post media-post clearfix pb-0 mb-10">
-                  <a href="#" class="post-thumb mr-20"><img alt="" src="{%static 'images/event/2.jpg' %}"></a>
-                  <div class="post-right">
-                    <h4 class="mt-0 mb-5"><a href="#">Upcoming Event Title</a></h4>
-                    <ul class="list-inline font-12 mb-5">
-                      <li class="pr-0"><i class="fa fa-calendar mr-5"></i> June 26, 2016 |</li>
-                      <li class="pl-5"><i class="fa fa-map-marker mr-5"></i>New York</li>
-                    </ul>
-                    <p class="mb-0 font-13">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas eveniet, nemo dicta. Ullam nam.</p>
-                    <a class="text-theme-colored font-13" href="#">Read More →</a>
-                  </div>
-                </article>
-                <article class="post media-post clearfix pb-0 mb-10">
-                  <a href="#" class="post-thumb mr-20"><img alt="" src="{%static 'images/event/3.jpg' %}"></a>
-                  <div class="post-right">
-                    <h4 class="mt-0 mb-5"><a href="#">Upcoming Event Title</a></h4>
-                    <ul class="list-inline font-12 mb-5">
-                      <li class="pr-0"><i class="fa fa-calendar mr-5"></i> June 26, 2016 |</li>
-                      <li class="pl-5"><i class="fa fa-map-marker mr-5"></i>New York</li>
-                    </ul>
-                    <p class="mb-0 font-13">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas eveniet, nemo dicta. Ullam nam.</p>
-                    <a class="text-theme-colored font-13" href="#">Read More →</a>
-                  </div>
-                </article>
+                {%endfor%}
               </div>
               <div class="col-md-6">
                 <h3 class="line-bottom mt-0 line-height-1">Why <span class="text-theme-color-2">Choose Us?</span></h3>
