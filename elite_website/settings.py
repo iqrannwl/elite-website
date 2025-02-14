@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "gallery",
     "contacts",
     "events",
+    "phonenumber_field",
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+PHONENUMBER_DEFAULT_REGION="PK"
