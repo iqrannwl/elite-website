@@ -48,9 +48,23 @@
                     <a href="{{icon.url}}" target="_blank">
                       <i class="fa {{icon.icon_class}} text-white"></i>
                     </a>
-                    
                   </li>
                 {% endfor %}
+                {%else%}
+                <li>
+                  <a href="#" target="_blank">
+                    <i class="fa fa-facebook text-white"></i>
+                  </a>
+                  <a href="#" target="_blank">
+                    <i class="fa fa-instagram text-white"></i>
+                  </a>
+                  <a href="#" target="_blank">
+                    <i class="fa fa-twitter text-white"></i>
+                  </a>
+                  <a href="#" target="_blank">
+                    <i class="fa fa-youtube text-white"></i>
+                  </a>
+                </li>
                 {%endif%}
               </ul>
             </div>
@@ -63,7 +77,13 @@
         <div class="row">
           <div class="col-xs-12 col-sm-4 col-md-5">
             <div class="widget no-border m-0">
+              {%if logo_image%}
               <a class="menuzord-brand pull-left flip xs-pull-center mb-15" href="javascript:void(0)"><img src="{{logo_image.logo.url}}" height="80px" alt=""></a>
+              {%else%}
+              <a class="menuzord-brand pull-left flip xs-pull-center mb-15"
+              href="javascript:void(0)">
+              Logo
+            </a>
             </div>
           </div>
           <div class="col-xs-12 col-sm-4 col-md-4">
@@ -72,7 +92,16 @@
                 <li><i class="fa fa-phone-square text-theme-colored font-36 mt-5 sm-display-block"></i></li>
                 <li>
                   <a href="#" class="font-12 text-gray text-uppercase">Call us today!</a>
-                  <h5 class="font-14 m-0">{{phone_number.phone_number}}</h5>
+                  <h5 class="font-14 m-0">
+                    {%if phone_number%}
+                    <a href="tel:{{phone_number.phone_number}}" class="text-theme-colored font-14">
+                      {{phone_number.phone_number}} </a>
+                      {%else%}
+                      <a href="#" class="text-theme-colored font-14">
+                        Not Available
+                      </a>
+                    {%endif%}
+                  </h5>
                 </li>
               </ul>
             </div>
