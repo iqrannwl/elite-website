@@ -112,7 +112,11 @@
                 <li><i class="fa fa-clock-o text-theme-colored font-36 mt-5 sm-display-block"></i></li>
                 <li>
                   <a href="#" class="font-12 text-gray text-uppercase">We are open!</a>
+                  {%if school_timing%}
                   <h5 class="font-13 text-black m-0"> Mon-Sat {{school_timing.start_time}}-{{school_timing.end_time}}</h5>
+                  {%else%}
+                  <h5 class="font-13 text-black m-0"> Not Available</h5
+                    {%endif%}
                 </li>
               </ul>
             </div>

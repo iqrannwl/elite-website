@@ -13,7 +13,7 @@ def get_context():
     mobile_numbers = MobileNumber.objects.get(id=1) if MobileNumber.objects.all().exists() else None
     phone_numbers = Phonenumber.objects.get(id=1) if Phonenumber.objects.all().exists() else None
     school_timings = SchoolTiming.objects.get(id=1) if  SchoolTiming.objects.all().exists() else None
-    logo_image = LogoImage.objects.get(id=1)
+    logo_image = LogoImage.objects.get(id=1) if LogoImage.objects.all() else None
     return {
         "social_links": social_links,
         "mobile_numbers": mobile_numbers,
