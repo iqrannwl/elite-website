@@ -1,14 +1,21 @@
 from django.shortcuts import render
-from home.models import SocialLink, MobileNumber, Phonenumber, SchoolTiming
-# Create your views here.
+from sliders.models import Slider2, Slider1, Slider3
+from about.models import AboutModel
+from utils import utils
+
 def home_page(request):
-    social_links = SocialLink.objects.all()
-    mobile_numbers = MobileNumber.objects.get(id=1)
-    phone_numbers = Phonenumber.objects.get(id=1)
-    school_timings = SchoolTiming.objects.get(id=1)
+    slider1 = Slider1.objects.all()
+    slider2 = Slider2.objects.all()
+    slider3 = Slider3.objects.all()
+
+    #about
+    about = AboutModel.objects.all()
+
+
     return render(request, 'home.html', {
-        "social_links": social_links,
-        "mobile_numbers": mobile_numbers,
-        "phone_number": phone_numbers,
-        "school_timing": school_timings,
-        })
+        "slider1": slider1,
+        "slider2": slider2,
+        "slider3": slider3,
+        "about": about,
+        **utils.get_context()
+    })
