@@ -8,11 +8,11 @@
           <div class="section-content">
             <div class="row">
               <div class="col-md-12">
-                <h2 class="title text-white">Teachers</h2>
+                <h2 class="title text-white">Our Staff</h2>
                 <ol class="breadcrumb text-left text-black mt-10">
                   <li><a href="#">Home</a></li>
                   <li><a href="#">Pages</a></li>
-                  <li class="active text-gray-silver">Page Title</li>
+                  <li class="active text-gray-silver">Staff Members</li>
                 </ol>
               </div>
             </div>
@@ -24,144 +24,34 @@
       <section id="team">
         <div class="container">
           <div class="row mtli-row-clearfix">
+            {%for staf in teachers%}
             <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-30 mb-sm-30">
-              <div class="team-members maxwidth400">
-                <div class="team-thumb">
-                  <img class="img-fullwidth" alt="" src="{%static 'images/team/sm-1.jpg' %}">
+              <div class="team maxwidth400">
+                <div class="thumb">
+                  {%if staf.image%}
+                  <img class="img-fullwidth" src="{{staf.image.url}}" alt="">
+                  {%else%}
+                  <img class="img-fullwidth" src="{%static 'images/team/team5.jpg' %}" alt="">
+                  {%endif%}
                 </div>
-                <div class="team-bottom-part border-bottom-theme-color-2-2px bg-lighter border-1px text-center p-10 pt-20 pb-10">
-                  <h4 class="text-uppercase font-raleway font-weight-600 m-0"><a class="text-theme-color-2" href="page-teachers-details.html"> David Zakaria</a></h4>
-                  <h5 class="text-theme-color">Teacher - MBA</h5>
-                  <ul class="styled-icons icon-sm icon-dark icon-theme-colored">
+                <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
+                  <h4 class="name text-theme-color-2 mt-0">{{staf.name}} - <small>{{staf.designation}}</small></h4>
+                  <p class="mb-20">
+                    {{staf.description|truncatewords:10|safe}}
+                  </p>
+                  <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                   </ul>
+                  <a class="btn btn-theme-colored btn-sm pull-right flip" href="{%url 'teacher_details' staf.id %}">view details</a>
                 </div>
               </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-30 mb-sm-30">
-              <div class="team-members maxwidth400">
-                <div class="team-thumb">
-                  <img class="img-fullwidth" alt="" src="{%static 'images/team/sm-2.jpg' %}">
-                </div>
-                <div class="team-bottom-part border-bottom-theme-color-2-2px bg-lighter border-1px text-center p-10 pt-20 pb-10">
-                  <h4 class="text-uppercase font-raleway font-weight-600 m-0"><a class="text-theme-color-2" href="page-teachers-details.html"> Sakib Smith</a></h4>
-                  <h5 class="text-theme-color">Teacher - MBA</h5>
-                  <ul class="styled-icons icon-sm icon-dark icon-theme-colored">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-30 mb-sm-30">
-              <div class="team-members maxwidth400">
-                <div class="team-thumb">
-                  <img class="img-fullwidth" alt="" src="{%static 'images/team/sm-3.jpg' %}">
-                </div>
-                <div class="team-bottom-part border-bottom-theme-color-2-2px bg-lighter border-1px text-center p-10 pt-20 pb-10">
-                  <h4 class="text-uppercase font-raleway font-weight-600 m-0"><a class="text-theme-color-2" href="page-teachers-details.html"> Ismail Jhon</a></h4>
-                  <h5 class="text-theme-color">Teacher - MBA</h5>
-                  <ul class="styled-icons icon-sm icon-dark icon-theme-colored">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-30 mb-sm-30">
-              <div class="team-members maxwidth400">
-                <div class="team-thumb">
-                  <img class="img-fullwidth" alt="" src="{%static 'images/team/sm-4.jpg' %}">
-                </div>
-                <div class="team-bottom-part border-bottom-theme-color-2-2px bg-lighter border-1px text-center p-10 pt-20 pb-10">
-                  <h4 class="text-uppercase font-raleway font-weight-600 m-0"><a class="text-theme-color-2" href="page-teachers-details.html"> Andre Smith</a></h4>
-                  <h5 class="text-theme-color">Teacher - MBA</h5>
-                  <ul class="styled-icons icon-sm icon-dark icon-theme-colored">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-sm-30">
-              <div class="team-members maxwidth400">
-                <div class="team-thumb">
-                  <img class="img-fullwidth" alt="" src="{%static 'images/team/sm-1.jpg' %}">
-                </div>
-                <div class="team-bottom-part border-bottom-theme-color-2-2px bg-lighter border-1px text-center p-10 pt-20 pb-10">
-                  <h4 class="text-uppercase font-raleway font-weight-600 m-0"><a class="text-theme-color-2" href="page-teachers-details.html"> David Zakaria</a></h4>
-                  <h5 class="text-theme-color">Teacher - MBA</h5>
-                  <ul class="styled-icons icon-sm icon-dark icon-theme-colored">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-sm-30">
-              <div class="team-members maxwidth400">
-                <div class="team-thumb">
-                  <img class="img-fullwidth" alt="" src="{%static 'images/team/sm-2.jpg' %}">
-                </div>
-                <div class="team-bottom-part border-bottom-theme-color-2-2px bg-lighter border-1px text-center p-10 pt-20 pb-10">
-                  <h4 class="text-uppercase font-raleway font-weight-600 m-0"><a class="text-theme-color-2" href="page-teachers-details.html"> Sakib Smith</a></h4>
-                  <h5 class="text-theme-color">Teacher - MBA</h5>
-                  <ul class="styled-icons icon-sm icon-dark icon-theme-colored">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-sm-30">
-              <div class="team-members maxwidth400">
-                <div class="team-thumb">
-                  <img class="img-fullwidth" alt="" src="{%static 'images/team/sm-3.jpg' %}">
-                </div>
-                <div class="team-bottom-part border-bottom-theme-color-2-2px bg-lighter border-1px text-center p-10 pt-20 pb-10">
-                  <h4 class="text-uppercase font-raleway font-weight-600 m-0"><a class="text-theme-color-2" href="page-teachers-details.html"> Ismail Jhon</a></h4>
-                  <h5 class="text-theme-color">Teacher - MBA</h5>
-                  <ul class="styled-icons icon-sm icon-dark icon-theme-colored">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-sm-30">
-              <div class="team-members maxwidth400">
-                <div class="team-thumb">
-                  <img class="img-fullwidth" alt="" src="{%static 'images/team/sm-4.jpg' %}">
-                </div>
-                <div class="team-bottom-part border-bottom-theme-color-2-2px bg-lighter border-1px text-center p-10 pt-20 pb-10">
-                  <h4 class="text-uppercase font-raleway font-weight-600 m-0"><a class="text-theme-color-2" href="page-teachers-details.html"> Andre Smith</a></h4>
-                  <h5 class="text-theme-color">Teacher - MBA</h5>
-                  <ul class="styled-icons icon-sm icon-dark icon-theme-colored">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            {%endfor%}
           </div>
         </div>
+
       </section>
   
       <!-- Divider: Funfact -->

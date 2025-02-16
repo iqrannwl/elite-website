@@ -15,67 +15,24 @@
           <div class="section-content">
             <div class="row">
               <div class="col-md-12">
-                <div class="owl-carousel-4col" data-dots="true">
-                  <div class="item ">
-                    <div class="service-block bg-white">
-                      <div class="thumb"> <img alt="featured project" src="{%static 'images/project/4.jpg' %}" class="img-fullwidth">
-                      <h4 class="text-white mt-0 mb-0"><span class="price">$125</span></h4>
-                      </div>
-                      <div class="content text-left flip p-25 pt-0">
-                        <h4 class="line-bottom mb-10">Accounting Technologies</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
-                       <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
-                      </div>
-                    </div>
-                  </div>
+                <div class="owl-carousel-3col" data-dots="true">
+                  {%for course in courses %}
                   <div class="item">
-                    <div class="service-block mb-md-30 bg-white">
-                      <div class="thumb"> <img alt="featured project" src="{%static 'images/project/5.jpg' %}" class="img-responsive img-fullwidth">
-                      <h4 class="text-white mt-0 mb-0"><span class="price">$125</span></h4>
-                      </div>
+                    <div class="bg-white p-2">
                       <div class="content text-left flip p-25 pt-0">
-                        <h4 class="line-bottom mb-10">Computer Technologies</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
-                       <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
-                     </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="service-block mb-md-30 bg-white">
-                      <div class="thumb"> <img alt="featured project" src="{%static 'images/project/6.jpg' %}" class="img-responsive img-fullwidth">
-                      <h4 class="text-white mt-0 mb-0"><span class="price">$125</span></h4>
-                      </div>
-                      <div class="content text-left flip p-25 pt-0">
-                        <h4 class="line-bottom mb-10">Development Studies</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
-                       <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
-                     </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="service-block mb-md-30 bg-white">
-                      <div class="thumb"> <img alt="featured project" src="{%static 'images/project/7.jpg' %}" class="img-responsive img-fullwidth">
-                      <h4 class="text-white mt-0 mb-0"><span class="price">$125</span></h4>
-                      </div>
-                      <div class="content text-left flip p-25 pt-0">
-                        <h4 class="line-bottom mb-10">Electrical & Electronic</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
-                        <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
+                        <h4 class="line-bottom mb-10">{{course.course_name}}</h4>
+                        <h4>Description</h4>
+                        <p>
+                          {{ course.course_detail|truncatewords:20|safe }}
+                        </p>
+                        <h4>Duration</h4>
+                        <p>{{course.duration}}</p>
+                        <a href="{% url 'courses' %}" class="btn btn-theme-colored btn-sm pull-right flip">More Details</a>
+                        <br>
                       </div>
                     </div>
                   </div>
-                  <div class="item">
-                    <div class="service-block mb-md-30 bg-white">
-                      <div class="thumb"> <img alt="featured project" src="{%static 'images/project/8.jpg' %}" class="img-responsive img-fullwidth">
-                      <h4 class="text-white mt-0 mb-0"><span class="price">$125</span></h4>
-                      </div>
-                      <div class="content text-left flip p-25 pt-0">
-                        <h4 class="line-bottom mb-10">Chemical Engineering</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
-                        <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
-                      </div>
-                    </div>
-                  </div>
+                  {%endfor%}
                 </div>
               </div>
             </div>
@@ -120,80 +77,37 @@
       </section>
   
        <!-- Section: Teachers -->
-      <section  id="teachers">
+       <section id="team">
         <div class="container">
-          <div class="section-title mb-10">
-            <div class="row">
-              <div class="col-md-8">
-                <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1">Our <span class="text-theme-color-2 font-weight-400">Teachers</span></h2>
-             </div>
-            </div>
-          </div>
-          <div class="section-content">
-            <div class="row multi-row-clearfix">
-              <div class="col-sm-6 col-md-3 sm-text-center mb-sm-30">
-                <div class="team maxwidth400">
-                  <div class="thumb"><img class="img-fullwidth" src="{%static 'images/team/team5.jpg' %}" alt=""></div>
-                  <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
-                    <h4 class="name text-theme-color-2 mt-0">Andre Smith - <small>Teacher</small></h4>
-                    <p class="mb-20">Lorem ipsum dolor sit amet, con amit sectetur adipisicing elit.</p>
-                    <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    </ul>
-                    <a class="btn btn-theme-colored btn-sm pull-right flip" href="page-teachers-details.html">view details</a>
-                  </div>
+          <div class="row mtli-row-clearfix">
+            {%for staf in teachers%}
+            <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-30 mb-sm-30">
+              <div class="team maxwidth400">
+                <div class="thumb">
+                  {%if staf.image%}
+                  <img class="img-fullwidth" src="{{staf.image.url}}" alt="">
+                  {%else%}
+                  <img class="img-fullwidth" src="{%static 'images/team/team5.jpg' %}" alt="">
+                  {%endif%}
                 </div>
-              </div>
-              <div class="col-sm-6 col-md-3 sm-text-center mb-sm-30">
-                <div class="team maxwidth400">
-                  <div class="thumb"><img class="img-fullwidth" src="{%static 'images/team/team6.jpg' %}" alt=""></div>
-                  <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
-                    <h4 class="name mt-0 text-theme-color-2">Sakib Smith - <small>Teacher</small></h4>
-                    <p class="mb-20">Lorem ipsum dolor sit amet, con amit sectetur adipisicing elit.</p>
-                    <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    </ul>
-                    <a class="btn btn-theme-colored btn-sm pull-right flip" href="page-teachers-details.html">view details</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-3 sm-text-center mb-sm-30">
-                <div class="team maxwidth400">
-                  <div class="thumb"><img class="img-fullwidth" src="{%static 'images/team/team7.jpg' %}" alt=""></div>
-                  <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
-                    <h4 class="name mt-0 text-theme-color-2">David Zakaria - <small>Teacher</small></h4>
-                    <p class="mb-20">Lorem ipsum dolor sit amet, con amit sectetur adipisicing elit.</p>
-                    <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    </ul>
-                    <a class="btn btn-theme-colored btn-sm pull-right flip" href="page-teachers-details.html">view details</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-3 sm-text-center">
-                <div class="team maxwidth400">
-                  <div class="thumb"><img class="img-fullwidth" src="{%static 'images/team/team8.jpg' %}" alt=""></div>
-                  <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
-                    <h4 class="name mt-0 text-theme-color-2">Ismail Jon - <small>Teacher</small></h4>
-                    <p class="mb-20">Lorem ipsum dolor sit amet, con amit sectetur adipisicing elit.</p>
-                    <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    </ul>
-                    <a class="btn btn-theme-colored btn-sm pull-right flip" href="page-teachers-details.html">view details</a>
-                  </div>
+                <div class="content border-1px border-bottom-theme-color-2-2px p-15 bg-light clearfix">
+                  <h4 class="name text-theme-color-2 mt-0">{{staf.name}} - <small>{{staf.designation}}</small></h4>
+                  <p class="mb-20">
+                    {{staf.description|truncatewords:10|safe}}
+                  </p>
+                  <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                  </ul>
+                  <a class="btn btn-theme-colored btn-sm pull-right flip" href="{%url 'teacher_details' staf.id %}">view details</a>
                 </div>
               </div>
             </div>
+            {%endfor%}
           </div>
         </div>
+
       </section>
   
       <!-- Section: Gallery -->
@@ -212,230 +126,34 @@
                 <!-- Works Filter -->
                 <div class="portfolio-filter font-alt align-center">
                   <a href="#" class="active" data-filter="*">All</a>
-                  <a href="#select1" class="" data-filter=".select1">Photos</a>
-                  <a href="#select2" class="" data-filter=".select2">Campus</a>
-                  <a href="#select3" class="" data-filter=".select3">Students</a>
+                  {% for type in image_types %}
+                      <a href="#{{ type.name|slugify }}" class="" data-filter=".{{ type.name|slugify }}">{{ type.name }}</a>
+                  {% endfor %}
+
                 </div>
                 <!-- End Works Filter -->
                 
                 <!-- Portfolio Gallery Grid -->
-                <div id="grid" class="gallery-isotope grid-4 gutter clearfix">
+                <div id="grid" class="gallery-isotope grid-3 gutter clearfix">
+
                   <!-- Portfolio Item Start -->
-                  <div class="gallery-item select1">
-                    <div class="thumb">
-                      <img class="img-fullwidth" src="{%static 'images/gallery/s1.jpg' %}" alt="project">
-                      <div class="overlay-shade"></div>
-                      <div class="icons-holder">
-                        <div class="icons-holder-inner">
-                          <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
-                            <a data-lightbox="image" href="images/gallery/1.jpg' %}"><i class="fa fa-plus"></i></a>
-                            <a href="#"><i class="fa fa-link"></i></a>
+                  {% for image in gallery_list %}
+                  <div class="gallery-item {% for type in image.image_type.all %}{{ type.name|slugify }} {% endfor %}">
+                      <div class="thumb">
+                          <img class="img-fullwidth" src="{{ image.image.url }}" alt="Gallery Image">
+                          <div class="overlay-shade"></div>
+                          <div class="icons-holder">
+                              <div class="icons-holder-inner">
+                                  <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                                      <a data-lightbox="image" href="{{ image.image.url }}"><i class="fa fa-plus"></i></a>
+                                      <a href="#"><i class="fa fa-link"></i></a>
+                                  </div>
+                              </div>
                           </div>
-                        </div>
+                          <a class="hover-link" data-lightbox="image" href="{{ image.image.url }}">View more</a>
                       </div>
-                      <a class="hover-link" data-lightbox="image" href="images/gallery/1.jpg' %}">View more</a>
-                    </div>
                   </div>
-                  <!-- Portfolio Item End -->
-  
-                  <!-- Portfolio Item Start -->
-                  <div class="gallery-item select1">
-                    <div class="thumb">
-                      <img class="img-fullwidth" src="{%static 'images/gallery/s2.jpg' %}" alt="project">
-                      <div class="overlay-shade"></div>
-                      <div class="icons-holder">
-                        <div class="icons-holder-inner">
-                          <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
-                            <a data-lightbox="image" href="images/gallery/2.jpg' %}"><i class="fa fa-plus"></i></a>
-                            <a href="#"><i class="fa fa-link"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                      <a class="hover-link" data-lightbox="image" href="images/gallery/2.jpg' %}">View more</a>
-                    </div>
-                  </div>
-                  <!-- Portfolio Item End -->
-  
-                  <!-- Portfolio Item Start -->
-                  <div class="gallery-item select2">
-                    <div class="thumb">
-                      <img class="img-fullwidth" src="{%static 'images/gallery/s3.jpg' %}" alt="project">
-                      <div class="overlay-shade"></div>
-                      <div class="icons-holder">
-                        <div class="icons-holder-inner">
-                          <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
-                            <a data-lightbox="image" href="images/gallery/3.jpg' %}"><i class="fa fa-plus"></i></a>
-                            <a href="#"><i class="fa fa-link"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                      <a class="hover-link" data-lightbox="image" href="images/gallery/3.jpg' %}">View more</a>
-                    </div>
-                  </div>
-                  <!-- Portfolio Item End -->
-  
-                  <!-- Portfolio Item Start -->
-                  <div class="gallery-item select3">
-                    <div class="thumb">
-                      <img class="img-fullwidth" src="{%static 'images/gallery/s4.jpg' %}" alt="project">
-                      <div class="overlay-shade"></div>
-                      <div class="icons-holder">
-                        <div class="icons-holder-inner">
-                          <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
-                            <a data-lightbox="image" href="images/gallery/4.jpg' %}"><i class="fa fa-plus"></i></a>
-                            <a href="#"><i class="fa fa-link"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                      <a class="hover-link" data-lightbox="image" href="images/gallery/4.jpg' %}">View more</a>
-                    </div>
-                  </div>
-                  <!-- Portfolio Item End -->
-  
-                  <!-- Portfolio Item Start -->
-                  <div class="gallery-item select1">
-                    <div class="thumb">
-                      <img class="img-fullwidth" src="{%static 'images/gallery/s5.jpg' %}" alt="project">
-                      <div class="overlay-shade"></div>
-                      <div class="icons-holder">
-                        <div class="icons-holder-inner">
-                          <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
-                            <a data-lightbox="image" href="images/gallery/5.jpg' %}"><i class="fa fa-plus"></i></a>
-                            <a href="#"><i class="fa fa-link"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                      <a class="hover-link" data-lightbox="image" href="images/gallery/5.jpg' %}">View more</a>
-                    </div>
-                  </div>
-                  <!-- Portfolio Item End -->
-  
-                  <!-- Portfolio Item Start -->
-                  <div class="gallery-item select3">
-                    <div class="thumb">
-                      <img class="img-fullwidth" src="{%static 'images/gallery/s6.jpg' %}" alt="project">
-                      <div class="overlay-shade"></div>
-                      <div class="icons-holder">
-                        <div class="icons-holder-inner">
-                          <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
-                            <a data-lightbox="image" href="images/gallery/6.jpg' %}"><i class="fa fa-plus"></i></a>
-                            <a href="#"><i class="fa fa-link"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                      <a class="hover-link" data-lightbox="image" href="images/gallery/6.jpg' %}">View more</a>
-                    </div>
-                  </div>
-                  <!-- Portfolio Item End -->
-  
-                  <!-- Portfolio Item Start -->
-                  <div class="gallery-item select2">
-                    <div class="thumb">
-                      <img class="img-fullwidth" src="{%static 'images/gallery/s7.jpg' %}" alt="project">
-                      <div class="overlay-shade"></div>
-                      <div class="icons-holder">
-                        <div class="icons-holder-inner">
-                          <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
-                            <a data-lightbox="image" href="images/gallery/7.jpg' %}"><i class="fa fa-plus"></i></a>
-                            <a href="#"><i class="fa fa-link"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                      <a class="hover-link" data-lightbox="image" href="images/gallery/7.jpg' %}">View more</a>
-                    </div>
-                  </div>
-                  <!-- Portfolio Item End -->
-  
-                  <!-- Portfolio Item Start -->
-                  <div class="gallery-item select3">
-                    <div class="thumb">
-                      <img class="img-fullwidth" src="{%static 'images/gallery/s8.jpg' %}" alt="project">
-                      <div class="overlay-shade"></div>
-                      <div class="icons-holder">
-                        <div class="icons-holder-inner">
-                          <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
-                            <a data-lightbox="image" href="images/gallery/8.jpg' %}"><i class="fa fa-plus"></i></a>
-                            <a href="#"><i class="fa fa-link"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                      <a class="hover-link" data-lightbox="image" href="images/gallery/8.jpg' %}">View more</a>
-                    </div>
-                  </div>
-                  <!-- Portfolio Item End -->
-  
-                  <!-- Portfolio Item Start -->
-                  <div class="gallery-item select1">
-                    <div class="thumb">
-                      <img class="img-fullwidth" src="{%static 'images/gallery/s9.jpg' %}" alt="project">
-                      <div class="overlay-shade"></div>
-                      <div class="icons-holder">
-                        <div class="icons-holder-inner">
-                          <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
-                            <a data-lightbox="image" href="images/gallery/9.jpg' %}"><i class="fa fa-plus"></i></a>
-                            <a href="#"><i class="fa fa-link"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                      <a class="hover-link" data-lightbox="image" href="images/gallery/9.jpg' %}">View more</a>
-                    </div>
-                  </div>
-                  <!-- Portfolio Item End -->
-  
-                  <!-- Portfolio Item Start -->
-                  <div class="gallery-item select2">
-                    <div class="thumb">
-                      <img class="img-fullwidth" src="{%static 'images/gallery/s10.jpg' %}" alt="project">
-                      <div class="overlay-shade"></div>
-                      <div class="icons-holder">
-                        <div class="icons-holder-inner">
-                          <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
-                            <a data-lightbox="image" href="images/gallery/10.jpg' %}"><i class="fa fa-plus"></i></a>
-                            <a href="#"><i class="fa fa-link"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                      <a class="hover-link" data-lightbox="image" href="images/gallery/10.jpg' %}">View more</a>
-                    </div>
-                  </div>
-                  <!-- Portfolio Item End -->
-  
-                  <!-- Portfolio Item Start -->
-                  <div class="gallery-item select1">
-                    <div class="thumb">
-                      <img class="img-fullwidth" src="{%static 'images/gallery/s11.jpg' %}" alt="project">
-                      <div class="overlay-shade"></div>
-                      <div class="icons-holder">
-                        <div class="icons-holder-inner">
-                          <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
-                            <a data-lightbox="image" href="images/gallery/11.jpg' %}"><i class="fa fa-plus"></i></a>
-                            <a href="#"><i class="fa fa-link"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                      <a class="hover-link" data-lightbox="image" href="images/gallery/11.jpg' %}">View more</a>
-                    </div>
-                  </div>
-                  <!-- Portfolio Item End -->
-  
-                  <!-- Portfolio Item Start -->
-                  <div class="gallery-item select3">
-                    <div class="thumb">
-                      <img class="img-fullwidth" src="{%static 'images/gallery/s12.jpg' %}" alt="project">
-                      <div class="overlay-shade"></div>
-                      <div class="icons-holder">
-                        <div class="icons-holder-inner">
-                          <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
-                            <a data-lightbox="image" href="images/gallery/12.jpg' %}"><i class="fa fa-plus"></i></a>
-                            <a href="#"><i class="fa fa-link"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                      <a class="hover-link" data-lightbox="image" href="images/gallery/12.jpg' %}">View more</a>
-                    </div>
-                  </div>
-                  <!-- Portfolio Item End -->
-                  
+              {% endfor %}
                 </div>
                 <!-- End Portfolio Gallery Grid -->
               </div>
