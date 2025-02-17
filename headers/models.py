@@ -7,6 +7,7 @@ ICON_CHOICES = [
     ('fa-linkedin', 'LinkedIn'),
     ('fa-instagram', 'Instagram'),
     ('fa-youtube', 'YouTube'),
+    ('fa-whatsapp', 'Whatsapp')
 ]
 
 class SocialLink(models.Model):

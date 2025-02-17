@@ -4,9 +4,9 @@
         <div class="col-sm-6 col-md-3">
           <div class="widget dark">
             <img class="mt-5 mb-20" alt="" src="images/logo-white-footer.png">
-            <p>203, Envato Labs, Behind Alis Steet, Melbourne, Australia.</p>
+            <p>Village Dhabliwala P/O Same, Tehsil & District Narowal.</p>
             <ul class="list-inline mt-5">
-              <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-theme-color-2 mr-5"></i> <a class="text-gray" href="#">123-456-789</a> </li>
+              <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-theme-color-2 mr-5"></i> <a class="text-gray" href="0542434181">0542-434181</a> </li>
               <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-theme-color-2 mr-5"></i> <a class="text-gray" href="#">contact@yourdomain.com</a> </li>
               <li class="m-0 pl-10 pr-10"> <i class="fa fa-globe text-theme-color-2 mr-5"></i> <a class="text-gray" href="#">www.yourdomain.com</a> </li>
             </ul>
@@ -16,11 +16,11 @@
           <div class="widget dark">
             <h4 class="widget-title">Useful Links</h4>
             <ul class="list angle-double-right list-border">
-              <li><a href="page-about-style1.html">About Us</a></li>
-              <li><a href="page-course-list.html">Our Courses</a></li>
-              <li><a href="page-pricing-style1.html">Pricing Table</a></li>
-              <li><a href="page-gallery-3col.html">Gallery</a></li>
-              <li><a href="shop-category.html">Shop</a></li>              
+              <li><a href="{%url 'about'%}">About Us</a></li>
+              <li><a href="{%url 'courses'%}">Our Courses</a></li>
+              <li><a href="{%url 'events'%}">Events</a></li>
+              <li><a href="{%url 'gallery'%}">Gallery</a></li>
+              <li><a href="{%url 'blogs'%}">Blogs</a></li>              
             </ul>
           </div>
         </div>
@@ -61,12 +61,30 @@
           <div class="widget dark">
             <h5 class="widget-title mb-10">Connect With Us</h5>
             <ul class="styled-icons icon-bordered icon-sm">
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-skype"></i></a></li>
-              <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-              <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-              <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+              {%if social_links%}
+              {% for icon in social_links%}
+                <li>
+                  <a href="{{icon.url}}" target="_blank">
+                    <i class="fa {{icon.icon_class}} text-white"></i>
+                  </a>
+                </li>
+              {% endfor %}
+              {%else%}
+              <li>
+                <a href="#" target="_blank">
+                  <i class="fa fa-facebook text-white"></i>
+                </a>
+                <a href="#" target="_blank">
+                  <i class="fa fa-instagram text-white"></i>
+                </a>
+                <a href="#" target="_blank">
+                  <i class="fa fa-twitter text-white"></i>
+                </a>
+                <a href="#" target="_blank">
+                  <i class="fa fa-youtube text-white"></i>
+                </a>
+              </li>
+              {%endif%}
             </ul>
           </div>
         </div>

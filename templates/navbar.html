@@ -124,26 +124,19 @@
         </div>
       </div>
     </div>
-    <div class="header-nav">
+    <div class="header-nav" style="background-color: #6c3c33 !important;">
       <div class="header-nav-wrapper bg-theme-colored border-bottom-theme-color-2-1px">
         <div class="container">
           <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive">
             <ul class="menuzord-menu">
               <li><a href="{%url 'home'%}">Home</a></li>
-              <li><a href="{%url 'about'%}">About</a></li>
-              <li><a href="{% url 'courses'%}">Courses</a></li>
               <li><a href="{%url 'teachers' %}">Our Staff</a></li>
+              <li><a href="{% url 'courses'%}">Courses</a></li>
               <li><a href="{% url 'gallery' %}">Gallery</a></li>
               <li><a href="{% url 'events' %}">Events</a></li>
-              <li><a href="{% url 'contact' %}">Contact</a></li>
               <li><a href="{% url 'blogs' %}">Blogs</a></li>
-            </ul>
-            <ul class="pull-right flip hidden-sm hidden-xs">
-              <li>
-                <!-- Modal: donate now Starts -->
-                <a class="btn btn-colored btn-flat bg-theme-color-2 text-white font-14 font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" data-toggle="modal" data-target="#BSParentModal" href="ajax-load/reservation-form.html">Book Now</a>
-                <!-- Modal: donate now End -->
-              </li>
+              <li><a href="{% url 'contact' %}">Contact Us</a></li>
+              <li><a href="{%url 'about'%}">About Us</a></li>
             </ul>
             <div id="top-search-bar" class="collapse">
               <div class="container">
