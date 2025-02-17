@@ -1,45 +1,6 @@
 {%load static%}
     <!-- Section: About -->
      {%include "about_section.html"%}
-  
-      <!-- Section: COURSES -->
-      <section id="courses" class="bg-lighter">
-        <div class="container pb-60">
-          <div class="section-title mb-10">
-          <div class="row">
-            <div class="col-md-8">
-              <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1">Our <span class="text-theme-color-2 font-weight-400">COURSES</span></h2>
-           </div>
-          </div>
-          </div>
-          <div class="section-content">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="owl-carousel-3col" data-dots="true">
-                  {%for course in courses %}
-                  <div class="item">
-                    <div class="bg-white p-2">
-                      <div class="content text-left flip p-25 pt-0">
-                        <h4 class="line-bottom mb-10">{{course.course_name}}</h4>
-                        <h4>Description</h4>
-                        <p>
-                          {{ course.course_detail|truncatewords:20|safe }}
-                        </p>
-                        <h4>Duration</h4>
-                        <p>{{course.duration}}</p>
-                        <a href="{% url 'courses' %}" class="btn btn-theme-colored btn-sm pull-right flip">More Details</a>
-                        <br>
-                      </div>
-                    </div>
-                  </div>
-                  {%endfor%}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-  
       <!-- Divider: Funfact -->
       <section class="divider parallax layer-overlay overlay-theme-colored-9" data-bg-img="images/bg/bg2.jpg' %}" data-parallax-ratio="0.7">
         <div class="container">
@@ -79,6 +40,13 @@
        <!-- Section: Teachers -->
        <section id="team">
         <div class="container">
+          <div class="section-title mb-10">
+            <div class="row">
+              <div class="col-md-12">
+                <h2 class="mt-0 text-uppercase text-theme-colored title line-bottom line-height-1">Our<span class="text-theme-color-2 font-weight-400"> Teacher</span></h2>
+              </div>
+            </div>
+          </div>
           <div class="row mtli-row-clearfix">
             {%for staf in teachers%}
             <div class="col-xs-12 col-sm-6 col-md-3 sm-text-center mb-30 mb-sm-30">
@@ -161,163 +129,6 @@
           </div>
         </div >
       </section>
-  
-      <!-- Section: Why Choose Us -->
-      <section id="event" class="">
-        <div class="container pb-50">
-          <div class="section-content">
-            <div class="row">
-              <div class="col-md-6">
-                <h3 class="text-uppercase line-bottom mt-0 line-height-1"><i class="fa fa-calendar mr-10"></i>Upcoming <span class="text-theme-color-2">Events</span></h3>
-                {%for event in events%}
-                <article class="post media-post clearfix pb-0 mb-10">
-                  <a href="#" class="post-thumb mr-20"><img alt="" src="{%static 'images/event/1.jpg' %}"></a>
-                  <div class="post-right">
-                    <h4 class="mt-0 mb-5"><a href="#">{{event.title}}</a></h4>
-                    <ul class="list-inline font-12 mb-5">
-                      <li class="pr-0"><i class="fa fa-calendar mr-5"></i> {{event.date|date}} |</li>
-                      <li class="pl-5"><i class="fa fa-map-marker mr-5"></i>{{event.location}}</li>
-                    </ul>
-                    <p class="mb-0 font-13">{{event.description|safe}}</p>
-                    <a class="text-theme-colored font-13" href="{% url 'event_detail' event.id %}">Read More →</a>
-                  </div>
-                </article>
-                {%endfor%}
-              </div>
-              <div class="col-md-6">
-                <h3 class="line-bottom mt-0 line-height-1">Why <span class="text-theme-color-2">Choose Us?</span></h3>
-                <p class="mb-10">The Cweren Law Firm is a recognized leader in landlord tenant representation throughout Texas.The largest professional property.</p>
-                <div id="accordion1" class="panel-group accordion">
-                  <div class="panel">
-                    <div class="panel-title"> <a class="active" data-parent="#accordion1" data-toggle="collapse" href="#accordion11" aria-expanded="true"> <span class="open-sub"></span> Why this Company is Best?</a> </div>
-                    <div id="accordion11" class="panel-collapse collapse in" role="tablist" aria-expanded="true">
-                      <div class="panel-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore impedit quae repellendus provident dolor iure poss imusven am aliquam. Officiis totam ea laborum deser unt vonsess.  iure poss imusven am aliquam</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="panel">
-                    <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion12" class="" aria-expanded="true"> <span class="open-sub"></span> Why this Company is Best?</a> </div>
-                    <div id="accordion12" class="panel-collapse collapse" role="tablist" aria-expanded="true">
-                      <div class="panel-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore impedit quae repellendus provident dolor iure poss imusven am aliquam. Officiis totam ea laborum deser unt vonsess.  iure poss imusven am aliquam</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="panel">
-                    <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion13" class="" aria-expanded="true"> <span class="open-sub"></span> Why this Company is Best?</a> </div>
-                    <div id="accordion13" class="panel-collapse collapse" role="tablist" aria-expanded="true">
-                      <div class="panel-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore impedit quae repellendus provident dolor iure poss imusven am aliquam. Officiis totam ea laborum deser unt vonsess.  iure poss imusven am aliquam</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="panel">
-                    <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion14" class="" aria-expanded="true"> <span class="open-sub"></span> Why this Company is Best?</a> </div>
-                    <div id="accordion14" class="panel-collapse collapse" role="tablist" aria-expanded="true">
-                      <div class="panel-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore impedit quae repellendus provident dolor iure poss imusven am aliquam. Officiis totam ea laborum deser unt vonsess.  iure poss imusven am aliquam</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="panel">
-                    <div class="panel-title"> <a data-parent="#accordion1" data-toggle="collapse" href="#accordion15" class="" aria-expanded="true"> <span class="open-sub"></span> Why this Company is Best?</a> </div>
-                    <div id="accordion15" class="panel-collapse collapse" role="tablist" aria-expanded="true">
-                      <div class="panel-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore impedit quae repellendus provident dolor iure poss imusven am aliquam. Officiis totam ea laborum deser unt vonsess.  iure poss imusven am aliquam</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-  
-      <!-- Divider: testimonials -->
-      <section class="divider parallax layer-overlay overlay-theme-colored-9" data-background-ratio="0.5" data-bg-img="images/bg/bg2.jpg' %}">
-        <div class="container pb-50">
-          <div class="section-title">
-            <div class="row">
-              <div class="col-md-6">
-                <h5 class="font-weight-300 m-0 text-gray-lightgray">Happy Student</h5>
-                <h2 class="mt-0 mb-0 text-uppercase line-bottom text-white font-28">Testimonials<span class="font-30 text-theme-color-2">.</span></h2>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 mb-10">
-              <div class="owl-carousel-2col boxed" data-dots="true">
-                <div class="item">
-                  <div class="testimonial pt-10">
-                    <div class="thumb pull-left mb-0 mr-0 pr-20">
-                      <img width="75" class="img-circle" alt="" src="{%static 'images/testimonials/1.jpg' %}">
-                    </div>
-                    <div class="ml-100 ">
-                      <h4 class="text-white mt-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas vel sint, ut. Quisquam doloremque minus possimus eligendi dolore ad.</h4>
-                      <p class="author mt-20">- <span class="text-theme-color-2">Catherine Grace,</span> <small><em class="text-gray-lightgray">CEO apple.inc</em></small></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="testimonial pt-10">
-                    <div class="thumb pull-left mb-0 mr-0 pr-20">
-                      <img width="75" class="img-circle" alt="" src="{%static 'images/testimonials/2.jpg' %}">
-                    </div>
-                    <div class="ml-100 ">
-                      <h4 class="text-white mt-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas vel sint, ut. Quisquam doloremque minus possimus eligendi dolore ad.</h4>
-                      <p class="author mt-20">- <span class="text-theme-color-2">Catherine Grace,</span> <small><em class="text-gray-lightgray">CEO apple.inc</em></small></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="testimonial pt-10">
-                    <div class="thumb pull-left mb-0 mr-0 pr-20">
-                      <img width="75" class="img-circle" alt="" src="{%static 'images/testimonials/3.jpg' %}">
-                    </div>
-                    <div class="ml-100 ">
-                      <h4 class="text-white mt-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas vel sint, ut. Quisquam doloremque minus possimus eligendi dolore ad.</h4>
-                      <p class="author mt-20">- <span class="text-theme-color-2">Catherine Grace,</span> <small><em class="text-gray-lightgray">CEO apple.inc</em></small></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="testimonial pt-10">
-                    <div class="thumb pull-left mb-0 mr-0 pr-20">
-                      <img width="75" class="img-circle" alt="" src="{%static 'images/testimonials/2.jpg' %}">
-                    </div>
-                    <div class="ml-100 ">
-                      <h4 class="text-white mt-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas vel sint, ut. Quisquam doloremque minus possimus eligendi dolore ad.</h4>
-                      <p class="author mt-20">- <span class="text-theme-color-2">Catherine Grace,</span> <small><em class="text-gray-lightgray">CEO apple.inc</em></small></p>
-                    </div>
-                  </div>
-                </div>
-              </div> 
-            </div>
-          </div>
-        </div>
-      </section>
-  
-      <!-- Section: blog -->
-   <!-- Section: inner-header -->
-   <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{%static 'images/bg/bg3.jpg' %}">
-    <div class="container pt-70 pb-20">
-      <!-- Section Content -->
-      <div class="section-content">
-        <div class="row">
-          <div class="col-md-12">
-            <h2 class="title text-white">Blogs</h2>
-            <ol class="breadcrumb text-left text-black mt-10">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Pages</a></li>
-              <li class="active text-gray-silver">Blogs</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Section: News & Blog -->
   <section id="blog" class="bg-lighter">
@@ -325,7 +136,7 @@
       <div class="section-title mb-10">
         <div class="row">
           <div class="col-md-12">
-            <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1">Latest <span class="text-theme-color-2 font-weight-400">News</span></h2>
+            <h2 class="mt-0 text-uppercase font-28 line-bottom line-height-1">Latest <span class="text-theme-color-2 font-weight-400">Blogs</span></h2>
          </div>
         </div>
       </div>
@@ -362,111 +173,18 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
   
       <!-- Section: Contact -->
-      <section id="contact">
-        <div class="container pb-60">
-          <div class="section-title mb-10">
-            <div class="row">
-              <div class="col-md-12">
-                <h2 class="text-uppercase text-theme-colored title line-bottom line-height-1 mt-0">Contact <span class="text-theme-color-2 font-weight-400">Us</span></h2>
-              </div>
-            </div>
-          </div>
-          <div class="section-content">
-            <div class="row">
-              <div class="col-md-5">
-                <!-- Google Map HTML Codes --><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5456.163483134849!2d144.95177475051227!3d-37.81589041361766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4dd5a05d97%3A0x3e64f855a564844d!2s121+King+St%2C+Melbourne+VIC+3000%2C+Australia!5e0!3m2!1sen!2sbd!4v1556130803137!5m2!1sen!2sbd" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-              </div>
-              <div class="col-md-7">
-                <h4 class="line-bottom mt-0 mb-30 mt-sm-20">SEND US A MESSAGE</h4>            
-                <!-- Contact Form -->
-                <form id="contact_form" name="contact_form" class="" action="http://html.kodesolution.live/s/studypress/v6.0/demo/includes/sendmail.php" method="post">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="form-group mb-30">
-                        <input name="form_name" class="form-control" type="text" placeholder="Enter Name" required="">
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="form-group mb-30">
-                        <input name="form_email" class="form-control required email" type="email" placeholder="Enter Email">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="form-group mb-30">
-                        <input name="form_subject" class="form-control required" type="text" placeholder="Enter Subject">
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="form-group mb-30">
-                        <input name="form_phone" class="form-control" type="text" placeholder="Enter Phone">
-                      </div>
-                    </div>
-                  </div>
-                      <div class="form-group">
-                    <textarea name="form_message" class="form-control required" rows="5" placeholder="Enter Message"></textarea>
-                  </div>
-                      <div class="form-group">
-                    <input name="form_botcheck" class="form-control" type="hidden" value="" />
-                    <button type="submit" class="btn btn-flat btn-theme-colored text-uppercase mt-20 mb-sm-30 border-left-theme-color-2-4px" data-loading-text="Please wait...">Send your message</button>
-                    <button type="reset" class="btn btn-flat btn-theme-colored text-uppercase mt-20 mb-sm-30 border-left-theme-color-2-4px">Reset</button>
-                  </div>
-                </form>
-                <!-- Contact Form Validation-->
-                <script type="text/javascript">
-                  $("#contact_form").validate({
-                    submitHandler: function(form) {
-                      var form_btn = $(form).find('button[type="submit"]');
-                      var form_result_div = '#form-result';
-                      $(form_result_div).remove();
-                      form_btn.before('<div id="form-result" class="alert alert-success" role="alert" style="display: none;"></div>');
-                      var form_btn_old_msg = form_btn.html();
-                      form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
-                      $(form).ajaxSubmit({
-                        dataType:  'json',
-                        success: function(data) {
-                          if( data.status == 'true' ) {
-                            $(form).find('.form-control').val('');
-                          }
-                          form_btn.prop('disabled', false).html(form_btn_old_msg);
-                          $(form_result_div).html(data.message).fadeIn('slow');
-                          setTimeout(function(){ $(form_result_div).fadeOut('slow') }, 6000);
-                        }
-                      });
-                    }
-                  });
-                </script>
-              </div>
-            </div>
+  <section id="contact">
+    <div class="container-fluid pb-60">
+      <div class="section-content">
+        <div class="row">
+          <div class="col-md-12">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3376.8734365651117!2d74.86948757573732!3d32.18068747391858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391eadb70dbfc1b1%3A0x17c6ccad54bf93d2!2sElite%20Scholars%20School%20Dhabliwala!5e0!3m2!1sen!2s!4v1739812655925!5m2!1sen!2s"  width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
           </div>
         </div>
-      </section>
-  
-      <!-- Divider: Clients -->
-      <section class="clients bg-theme-color-2">
-        <div class="container pt-10 pb-0">
-          <div class="row">
-            <div class="col-md-12">
-              <!-- Section: Clients -->
-              <div class="owl-carousel-6col clients-logo transparent text-center owl-nav-top">
-                <div class="item"> <a href="#"><img src="{%static 'images/clients/w1.png" alt=""></a></div>
-                <div class="item"> <a href="#"><img src="{%static 'images/clients/w2.png" alt=""></a></div>
-                <div class="item"> <a href="#"><img src="{%static 'images/clients/w3.png" alt=""></a></div>
-                <div class="item"> <a href="#"><img src="{%static 'images/clients/w4.png" alt=""></a></div>
-                <div class="item"> <a href="#"><img src="{%static 'images/clients/w5.png" alt=""></a></div>
-                <div class="item"> <a href="#"><img src="{%static 'images/clients/w6.png" alt=""></a></div>
-                <div class="item"> <a href="#"><img src="{%static 'images/clients/w3.png" alt=""></a></div>
-                <div class="item"> <a href="#"><img src="{%static 'images/clients/w4.png" alt=""></a></div>
-                <div class="item"> <a href="#"><img src="{%static 'images/clients/w5.png" alt=""></a></div>
-                <div class="item"> <a href="#"><img src="{%static 'images/clients/w6.png" alt=""></a></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    <!-- end main-content -->
-  
+      </div>
+    </div>
+  </section>
