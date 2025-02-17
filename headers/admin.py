@@ -1,5 +1,5 @@
 from django.contrib import admin
-from headers.models import SocialLink, Phonenumber, MobileNumber, SchoolTiming, LogoImage
+from headers.models import SocialLink, Phonenumber, MobileNumber, SchoolTiming, LogoImage, WeeklyschoolTiming
 from headers.forms import PhoneNumberForm, MobileNumberForm,SchoolTimingForm, LogoImageForm
 # Register your models here.
 
@@ -42,3 +42,5 @@ class MobileNumberAdmin(admin.ModelAdmin):
 
 admin.site.register(Phonenumber, PhoneNumberAdmin)
 admin.site.register(MobileNumber, MobileNumberAdmin)
+
+admin.site.register(WeeklyschoolTiming)

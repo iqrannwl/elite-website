@@ -29,5 +29,13 @@ class SchoolTiming(models.Model):
     end_time = models.TimeField()
 
 
+class WeeklyschoolTiming(models.Model):
+    day = models.CharField(max_length=50)
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+
+    def __str__(self):
+        return f"{self.day} - {self.start_time} to {self.end_time}"
+
 class LogoImage(models.Model):
     logo = models.ImageField(upload_to='logos/')

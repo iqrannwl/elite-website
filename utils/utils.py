@@ -1,5 +1,6 @@
 from django import forms
-from headers.models import SocialLink, MobileNumber, Phonenumber, SchoolTiming, LogoImage
+from headers.models import SocialLink, MobileNumber, Phonenumber, SchoolTiming, LogoImage, WeeklyschoolTiming
+
 
 def allowed_one(model, instance,cleaned_data,  massage=None):
     if model.objects.count() >= 1 and not instance:
@@ -14,10 +15,12 @@ def get_context():
     phone_numbers = Phonenumber.objects.get(id=1) if Phonenumber.objects.all().exists() else None
     school_timings = SchoolTiming.objects.get(id=1) if  SchoolTiming.objects.all().exists() else None
     logo_image = LogoImage.objects.get(id=1) if LogoImage.objects.all() else None
+    weekly_school_timings = WeeklyschoolTiming.objects.all()
     return {
         "social_links": social_links,
         "mobile_numbers": mobile_numbers,
         "phone_number": phone_numbers,
         "school_timing": school_timings,
         "logo_image": logo_image,
+        "weekly_school_timings": weekly_school_timings,
         }
