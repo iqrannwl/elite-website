@@ -1,0 +1,56 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+    #header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+
+    #branding h1,
+    #branding h1 a:link,
+    #branding h1 a:visited {
+        color: white;
+        font-weight: 600;
+    }
+
+    .module h2,
+    .module caption,
+    .inline-group h2 {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    div.breadcrumbs {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .button,
+    input[type=submit],
+    input[type=button],
+    .submit-row input,
+    button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+    }
+
+    .button:hover,
+    input[type=submit]:hover,
+    input[type=button]:hover,
+    .submit-row input:hover,
+    button:hover {
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    }
+
+    a:link,
+    a:visited {
+        color: #667eea;
+    }
+
+    #header a:link,
+    #header a:visited {
+        color: white;
+    }
+</style>
+{% endblock %}

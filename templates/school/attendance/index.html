@@ -1,0 +1,137 @@
+{% extends 'school/base.html' %}
+
+{% block page_title %}Attendance{% endblock %}
+
+{% block content %}
+<!-- Date Selector -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="data-table">
+            <form method="get" class="row g-3 align-items-end">
+                <div class="col-md-3">
+                    <label class="form-label">Select Date</label>
+                    <input type="date" class="form-control" name="date" value="{{ today|date:'Y-m-d' }}">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Select Class</label>
+                    <select class="form-select" name="class">
+                        <option value="">All Classes</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-gradient w-100">
+                        <i class="bi bi-funnel me-2"></i>Filter
+                    </button>
+                </div>
+                <div class="col-md-3">
+                    <a href="{% url 'admin:academics_attendance_add' %}" class="btn btn-success w-100">
+                        <i class="bi bi-plus-circle me-2"></i>Mark Attendance
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Statistics Cards -->
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="stat-card success">
+            <div class="icon">
+                <i class="bi bi-check-circle-fill"></i>
+            </div>
+            <h3>0</h3>
+            <p>Present Today</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card danger">
+            <div class="icon">
+                <i class="bi bi-x-circle-fill"></i>
+            </div>
+            <h3>0</h3>
+            <p>Absent Today</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card warning">
+            <div class="icon">
+                <i class="bi bi-clock-fill"></i>
+            </div>
+            <h3>0</h3>
+            <p>Late Today</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card info">
+            <div class="icon">
+                <i class="bi bi-calendar-check"></i>
+            </div>
+            <h3>0</h3>
+            <p>Total Marked</p>
+        </div>
+    </div>
+</div>
+
+<!-- Attendance Table -->
+<div class="data-table">
+    <h5 class="mb-4"><i class="bi bi-calendar-check-fill me-2"></i>Attendance for {{ today|date:"F d, Y" }}</h5>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Class</th>
+                    <th>Roll No.</th>
+                    <th>Status</th>
+                    <th>Remarks</th>
+                    <th>Marked By</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in attendance_records %}
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div class="user-avatar me-3" style="width: 35px; height: 35px;">
+                                {{ record.student.user.first_name.0 }}{{ record.student.user.last_name.0 }}
+                            </div>
+                            <strong>{{ record.student.user.get_full_name }}</strong>
+                        </div>
+                    </td>
+                    <td>{{ record.student.current_class.name|default:"-" }}</td>
+                    <td>{{ record.student.roll_number|default:"-" }}</td>
+                    <td>
+                        {% if record.status == 'PRESENT' %}
+                        <span class="badge badge-custom bg-success">Present</span>
+                        {% elif record.status == 'ABSENT' %}
+                        <span class="badge badge-custom bg-danger">Absent</span>
+                        {% elif record.status == 'LATE' %}
+                        <span class="badge badge-custom bg-warning">Late</span>
+                        {% else %}
+                        <span class="badge badge-custom bg-info">{{ record.get_status_display }}</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ record.remarks|default:"-" }}</td>
+                    <td>{{ record.marked_by.get_full_name|default:"-" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center py-5">
+                        <i class="bi bi-inbox" style="font-size: 3rem; color: #ccc;"></i>
+                        <p class="text-muted mt-3">No attendance records for today</p>
+                        <a href="{% url 'admin:academics_attendance_add' %}" class="btn btn-gradient">
+                            <i class="bi bi-plus-circle me-2"></i>Mark Attendance
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'school/base.html' %}
+
+{% block page_title %}Communication{% endblock %}
+
+{% block content %}
+<!-- Statistics Cards -->
+<div class="row g-4 mb-4">
+    <div class="col-md-4">
+        <div class="stat-card primary">
+            <div class="icon">
+                <i class="bi bi-megaphone-fill"></i>
+            </div>
+            <h3>{{ announcements.count }}</h3>
+            <p>Active Announcements</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="stat-card success">
+            <div class="icon">
+                <i class="bi bi-envelope-fill"></i>
+            </div>
+            <h3>0</h3>
+            <p>Messages</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="stat-card warning">
+            <div class="icon">
+                <i class="bi bi-bell-fill"></i>
+            </div>
+            <h3>0</h3>
+            <p>Notifications</p>
+        </div>
+    </div>
+</div>
+
+<!-- Announcements -->
+<div class="data-table">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="mb-0"><i class="bi bi-megaphone-fill me-2"></i>Announcements</h5>
+        <a href="{% url 'admin:communication_announcement_add' %}" class="btn btn-gradient">
+            <i class="bi bi-plus-circle me-2"></i>Create Announcement
+        </a>
+    </div>
+
+    <div class="row g-3">
+        {% for announcement in announcements %}
+        <div class="col-md-6">
+            <div class="border rounded p-4">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <h6 class="mb-0">{{ announcement.title }}</h6>
+                    <span class="badge bg-{{ announcement.announcement_type|lower }}">
+                        {{ announcement.get_announcement_type_display }}
+                    </span>
+                </div>
+                <p class="text-muted mb-3">{{ announcement.description|truncatewords:30 }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">
+                        <i class="bi bi-calendar me-1"></i>{{ announcement.start_date|date:"M d, Y" }}
+                    </small>
+                    <span class="badge bg-light text-dark">{{ announcement.get_target_audience_display }}</span>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="text-center py-5">
+                <i class="bi bi-inbox" style="font-size: 3rem; color: #ccc;"></i>
+                <p class="text-muted mt-3">No announcements found</p>
+                <a href="{% url 'admin:communication_announcement_add' %}" class="btn btn-gradient">
+                    <i class="bi bi-plus-circle me-2"></i>Create First Announcement
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

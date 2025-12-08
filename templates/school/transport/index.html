@@ -1,0 +1,58 @@
+{% extends 'school/base.html' %}
+
+{% block page_title %}Transport Management{% endblock %}
+
+{% block content %}
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="stat-card primary">
+            <div class="icon">
+                <i class="bi bi-bus-front-fill"></i>
+            </div>
+            <h3>0</h3>
+            <p>Total Vehicles</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card success">
+            <div class="icon">
+                <i class="bi bi-signpost-2-fill"></i>
+            </div>
+            <h3>0</h3>
+            <p>Active Routes</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card warning">
+            <div class="icon">
+                <i class="bi bi-person-fill"></i>
+            </div>
+            <h3>0</h3>
+            <p>Drivers</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card danger">
+            <div class="icon">
+                <i class="bi bi-tools"></i>
+            </div>
+            <h3>0</h3>
+            <p>Maintenance Due</p>
+        </div>
+    </div>
+</div>
+
+<div class="data-table">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="mb-0"><i class="bi bi-bus-front-fill me-2"></i>Transport Management</h5>
+        <a href="{% url 'admin:transport_vehicle_add' %}" class="btn btn-gradient">
+            <i class="bi bi-plus-circle me-2"></i>Add Vehicle
+        </a>
+    </div>
+    <p class="text-center text-muted py-5">Transport management interface. Manage vehicles and routes via admin panel.
+    </p>
+</div>
+{% endblock %}

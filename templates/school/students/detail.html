@@ -1,0 +1,355 @@
+{% extends 'school/base.html' %}
+
+{% block page_title %}Student Details{% endblock %}
+
+{% block content %}
+<!-- Student Header -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="data-table">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="d-flex align-items-center">
+                        <div class="user-avatar me-4" style="width: 100px; height: 100px; font-size: 2.5rem;">
+                            {% if student.user.profile_picture %}
+                            <img src="{{ student.user.profile_picture.url }}" alt="{{ student.user.get_full_name }}"
+                                class="rounded-circle" style="width: 100%; height: 100%; object-fit: cover;">
+                            {% else %}
+                            {{ student.user.first_name.0 }}{{ student.user.last_name.0 }}
+                            {% endif %}
+                        </div>
+                        <div>
+                            <h3 class="mb-1">{{ student.user.get_full_name }}</h3>
+                            <p class="text-muted mb-2">
+                                <span class="badge bg-primary me-2">{{ student.admission_number }}</span>
+                                <span class="badge bg-success">{{ student.get_status_display }}</span>
+                            </p>
+                            <p class="mb-0">
+                                <i class="bi bi-envelope me-2"></i>{{ student.user.email }}<br>
+                                <i class="bi bi-telephone me-2"></i>{{ student.father_phone }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-end">
+                    <a href="{% url 'school:student_edit' student.pk %}" class="btn btn-gradient mb-2">
+                        <i class="bi bi-pencil me-2"></i>Edit Student
+                    </a><br>
+                    <a href="{% url 'school:students' %}" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left me-2"></i>Back to List
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Stats -->
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="stat-card primary">
+            <div class="icon">
+                <i class="bi bi-calendar-check"></i>
+            </div>
+            <h3>{{ attendance_stats.PRESENT.count|default:0 }}</h3>
+            <p>Days Present</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card danger">
+            <div class="icon">
+                <i class="bi bi-calendar-x"></i>
+            </div>
+            <h3>{{ attendance_stats.ABSENT.count|default:0 }}</h3>
+            <p>Days Absent</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card success">
+            <div class="icon">
+                <i class="bi bi-trophy"></i>
+            </div>
+            <h3>85%</h3>
+            <p>Average Grade</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card warning">
+            <div class="icon">
+                <i class="bi bi-cash-stack"></i>
+            </div>
+            <h3>PKR 0</h3>
+            <p>Pending Fees</p>
+        </div>
+    </div>
+</div>
+
+<!-- Tabs -->
+<div class="row">
+    <div class="col-12">
+        <div class="data-table">
+            <ul class="nav nav-tabs mb-4" id="studentTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info"
+                        type="button">
+                        <i class="bi bi-person-fill me-2"></i>Personal Info
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="academic-tab" data-bs-toggle="tab" data-bs-target="#academic"
+                        type="button">
+                        <i class="bi bi-book-fill me-2"></i>Academic
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="attendance-tab" data-bs-toggle="tab" data-bs-target="#attendance"
+                        type="button">
+                        <i class="bi bi-calendar-check me-2"></i>Attendance
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="documents-tab" data-bs-toggle="tab" data-bs-target="#documents"
+                        type="button">
+                        <i class="bi bi-file-earmark-text me-2"></i>Documents
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="health-tab" data-bs-toggle="tab" data-bs-target="#health"
+                        type="button">
+                        <i class="bi bi-heart-pulse me-2"></i>Health
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="studentTabsContent">
+                <!-- Personal Info Tab -->
+                <div class="tab-pane fade show active" id="info" role="tabpanel">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <h6 class="text-muted mb-3">Basic Information</h6>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td width="40%"><strong>Full Name:</strong></td>
+                                    <td>{{ student.user.get_full_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Date of Birth:</strong></td>
+                                    <td>{{ student.user.date_of_birth|date:"M d, Y"|default:"-" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Gender:</strong></td>
+                                    <td>{{ student.user.get_gender_display|default:"-" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Blood Group:</strong></td>
+                                    <td>{{ student.get_blood_group_display|default:"-" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Religion:</strong></td>
+                                    <td>{{ student.religion|default:"-" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Nationality:</strong></td>
+                                    <td>{{ student.nationality }}</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h6 class="text-muted mb-3">Contact Information</h6>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td width="40%"><strong>Email:</strong></td>
+                                    <td>{{ student.user.email }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Phone:</strong></td>
+                                    <td>{{ student.user.phone_number|default:"-" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Address:</strong></td>
+                                    <td>{{ student.user.address|default:"-" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>City:</strong></td>
+                                    <td>{{ student.user.city|default:"-" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>State:</strong></td>
+                                    <td>{{ student.user.state|default:"-" }}</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h6 class="text-muted mb-3">Father's Information</h6>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td width="40%"><strong>Name:</strong></td>
+                                    <td>{{ student.father_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Phone:</strong></td>
+                                    <td>{{ student.father_phone }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email:</strong></td>
+                                    <td>{{ student.father_email|default:"-" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Occupation:</strong></td>
+                                    <td>{{ student.father_occupation|default:"-" }}</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h6 class="text-muted mb-3">Mother's Information</h6>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td width="40%"><strong>Name:</strong></td>
+                                    <td>{{ student.mother_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Phone:</strong></td>
+                                    <td>{{ student.mother_phone|default:"-" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email:</strong></td>
+                                    <td>{{ student.mother_email|default:"-" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Occupation:</strong></td>
+                                    <td>{{ student.mother_occupation|default:"-" }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Tab -->
+                <div class="tab-pane fade" id="academic" role="tabpanel">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <h6 class="text-muted mb-3">Current Academic Details</h6>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td width="40%"><strong>Class:</strong></td>
+                                    <td>{{ student.current_class.name|default:"-" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Section:</strong></td>
+                                    <td>{{ student.section.name|default:"-" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Roll Number:</strong></td>
+                                    <td>{{ student.roll_number|default:"-" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Admission Date:</strong></td>
+                                    <td>{{ student.admission_date|date:"M d, Y" }}</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h6 class="text-muted mb-3">Additional Details</h6>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td width="40%"><strong>Campus:</strong></td>
+                                    <td>{{ student.campus.name }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Uses Transport:</strong></td>
+                                    <td>{{ student.uses_transport|yesno:"Yes,No" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Is Hosteler:</strong></td>
+                                    <td>{{ student.is_hosteler|yesno:"Yes,No" }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Attendance Tab -->
+                <div class="tab-pane fade" id="attendance" role="tabpanel">
+                    <p class="text-muted">Attendance records will be displayed here.</p>
+                </div>
+
+                <!-- Documents Tab -->
+                <div class="tab-pane fade" id="documents" role="tabpanel">
+                    <div class="row g-3">
+                        {% for doc in documents %}
+                        <div class="col-md-4">
+                            <div class="border rounded p-3">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="bi bi-file-earmark-pdf text-danger me-2" style="font-size: 2rem;"></i>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">{{ doc.title }}</h6>
+                                        <small class="text-muted">{{ doc.get_document_type_display }}</small>
+                                    </div>
+                                </div>
+                                <a href="{{ doc.file.url }}" target="_blank"
+                                    class="btn btn-sm btn-outline-primary w-100">
+                                    <i class="bi bi-download me-2"></i>Download
+                                </a>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="col-12">
+                            <p class="text-center text-muted">No documents uploaded</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Health Tab -->
+                <div class="tab-pane fade" id="health" role="tabpanel">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <h6 class="text-muted mb-3">Medical Information</h6>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td width="40%"><strong>Blood Group:</strong></td>
+                                    <td>{{ student.get_blood_group_display|default:"-" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Medical Conditions:</strong></td>
+                                    <td>{{ student.medical_conditions|default:"-" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Allergies:</strong></td>
+                                    <td>{{ student.allergies|default:"-" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Medications:</strong></td>
+                                    <td>{{ student.medications|default:"-" }}</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h6 class="text-muted mb-3">Recent Health Records</h6>
+                            {% for record in health_records %}
+                            <div class="border-bottom pb-2 mb-2">
+                                <strong>{{ record.date|date:"M d, Y" }}</strong><br>
+                                <small class="text-muted">
+                                    Height: {{ record.height }}cm | Weight: {{ record.weight }}kg | BMI: {{ record.bmi
+                                    }}
+                                </small>
+                            </div>
+                            {% empty %}
+                            <p class="text-muted">No health records available</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

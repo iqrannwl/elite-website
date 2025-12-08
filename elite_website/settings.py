@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-import os
+
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -49,8 +50,21 @@ INSTALLED_APPS = [
     "contacts",
     "events",
     "phonenumber_field",
-    "blogs"
+    "blogs",
+    # School Management System Apps
+    "accounts",
+    "students",
+    "academics",
+    "staff",
+    "finance",
+    "library",
+    "transport",
+    "hostel",
+    "communication",
 ]
+
+# Custom User Model
+AUTH_USER_MODEL = 'accounts.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -153,3 +167,8 @@ CKEDITOR_CONFIGS = {
         'width': '100%',
     },
 }
+
+# Login/Logout URLs
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/school/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'

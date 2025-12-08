@@ -1,0 +1,61 @@
+{% extends 'school/base.html' %}
+
+{% block page_title %}Reports{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="data-table text-center p-4">
+            <i class="bi bi-people-fill text-primary" style="font-size: 3rem;"></i>
+            <h5 class="mt-3">Student Reports</h5>
+            <p class="text-muted">Attendance, Performance, Demographics</p>
+            <a href="{% url 'admin:students_student_changelist' %}" class="btn btn-gradient">View Reports</a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="data-table text-center p-4">
+            <i class="bi bi-cash-stack text-success" style="font-size: 3rem;"></i>
+            <h5 class="mt-3">Financial Reports</h5>
+            <p class="text-muted">Fee Collection, Expenses, Revenue</p>
+            <a href="{% url 'admin:finance_feeinvoice_changelist' %}" class="btn btn-gradient">View Reports</a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="data-table text-center p-4">
+            <i class="bi bi-clipboard-check text-warning" style="font-size: 3rem;"></i>
+            <h5 class="mt-3">Academic Reports</h5>
+            <p class="text-muted">Exams, Grades, Class Performance</p>
+            <a href="{% url 'admin:academics_examination_changelist' %}" class="btn btn-gradient">View Reports</a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="data-table text-center p-4">
+            <i class="bi bi-calendar-check text-info" style="font-size: 3rem;"></i>
+            <h5 class="mt-3">Attendance Reports</h5>
+            <p class="text-muted">Daily, Monthly, Class-wise</p>
+            <a href="{% url 'admin:academics_attendance_changelist' %}" class="btn btn-gradient">View Reports</a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="data-table text-center p-4">
+            <i class="bi bi-person-badge text-danger" style="font-size: 3rem;"></i>
+            <h5 class="mt-3">Staff Reports</h5>
+            <p class="text-muted">Attendance, Leave, Performance</p>
+            <a href="{% url 'admin:staff_staff_changelist' %}" class="btn btn-gradient">View Reports</a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="data-table text-center p-4">
+            <i class="bi bi-graph-up text-primary" style="font-size: 3rem;"></i>
+            <h5 class="mt-3">Custom Reports</h5>
+            <p class="text-muted">Build your own reports</p>
+            <button class="btn btn-gradient" disabled>Coming Soon</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

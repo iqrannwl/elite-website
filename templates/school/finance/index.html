@@ -1,0 +1,117 @@
+{% extends 'school/base.html' %}
+
+{% block page_title %}Finance Management{% endblock %}
+
+{% block content %}
+<!-- Statistics Cards -->
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="stat-card success">
+            <div class="icon">
+                <i class="bi bi-cash-stack"></i>
+            </div>
+            <h3>PKR {{ total_revenue|floatformat:0|default:"0" }}</h3>
+            <p>Total Revenue</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card warning">
+            <div class="icon">
+                <i class="bi bi-hourglass-split"></i>
+            </div>
+            <h3>PKR {{ pending_amount|floatformat:0|default:"0" }}</h3>
+            <p>Pending Amount</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card primary">
+            <div class="icon">
+                <i class="bi bi-receipt"></i>
+            </div>
+            <h3>{{ recent_invoices.count }}</h3>
+            <p>Total Invoices</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card danger">
+            <div class="icon">
+                <i class="bi bi-exclamation-triangle"></i>
+            </div>
+            <h3>0</h3>
+            <p>Overdue</p>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Invoices -->
+<div class="data-table">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="mb-0"><i class="bi bi-receipt-cutoff me-2"></i>Recent Invoices</h5>
+        <a href="{% url 'admin:finance_feeinvoice_add' %}" class="btn btn-gradient">
+            <i class="bi bi-plus-circle me-2"></i>Create Invoice
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>Invoice #</th>
+                    <th>Student</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Paid</th>
+                    <th>Balance</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for invoice in recent_invoices %}
+                <tr>
+                    <td><strong>{{ invoice.invoice_number }}</strong></td>
+                    <td>{{ invoice.student.user.get_full_name }}</td>
+                    <td>{{ invoice.invoice_date|date:"M d, Y" }}</td>
+                    <td>PKR {{ invoice.total_amount }}</td>
+                    <td>PKR {{ invoice.paid_amount }}</td>
+                    <td>PKR {{ invoice.balance_amount }}</td>
+                    <td>
+                        {% if invoice.status == 'PAID' %}
+                        <span class="badge badge-custom bg-success">Paid</span>
+                        {% elif invoice.status == 'PENDING' %}
+                        <span class="badge badge-custom bg-warning">Pending</span>
+                        {% elif invoice.status == 'OVERDUE' %}
+                        <span class="badge badge-custom bg-danger">Overdue</span>
+                        {% else %}
+                        <span class="badge badge-custom bg-info">{{ invoice.get_status_display }}</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a href="{% url 'admin:finance_feeinvoice_change' invoice.pk %}"
+                                class="btn btn-outline-primary">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="{% url 'admin:finance_payment_add' %}?invoice={{ invoice.pk }}"
+                                class="btn btn-outline-success">
+                                <i class="bi bi-cash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8" class="text-center py-5">
+                        <i class="bi bi-inbox" style="font-size: 3rem; color: #ccc;"></i>
+                        <p class="text-muted mt-3">No invoices found</p>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

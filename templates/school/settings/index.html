@@ -1,0 +1,67 @@
+{% extends 'school/base.html' %}
+
+{% block page_title %}Settings{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+    <div class="col-md-6">
+        <div class="data-table">
+            <h5 class="mb-4"><i class="bi bi-building me-2"></i>Campus Settings</h5>
+            <a href="{% url 'admin:accounts_campus_changelist' %}" class="btn btn-gradient w-100 mb-2">
+                <i class="bi bi-gear me-2"></i>Manage Campuses
+            </a>
+            <a href="{% url 'admin:accounts_academicyear_changelist' %}" class="btn btn-outline-primary w-100 mb-2">
+                <i class="bi bi-calendar me-2"></i>Academic Years
+            </a>
+            <a href="{% url 'admin:accounts_holiday_changelist' %}" class="btn btn-outline-primary w-100">
+                <i class="bi bi-calendar-x me-2"></i>Holidays
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="data-table">
+            <h5 class="mb-4"><i class="bi bi-book me-2"></i>Academic Settings</h5>
+            <a href="{% url 'admin:academics_class_changelist' %}" class="btn btn-gradient w-100 mb-2">
+                <i class="bi bi-grid me-2"></i>Manage Classes
+            </a>
+            <a href="{% url 'admin:academics_subject_changelist' %}" class="btn btn-outline-primary w-100 mb-2">
+                <i class="bi bi-journal me-2"></i>Manage Subjects
+            </a>
+            <a href="{% url 'admin:academics_timetable_changelist' %}" class="btn btn-outline-primary w-100">
+                <i class="bi bi-clock me-2"></i>Timetables
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="data-table">
+            <h5 class="mb-4"><i class="bi bi-cash me-2"></i>Financial Settings</h5>
+            <a href="{% url 'admin:finance_feetype_changelist' %}" class="btn btn-gradient w-100 mb-2">
+                <i class="bi bi-tags me-2"></i>Fee Types
+            </a>
+            <a href="{% url 'admin:finance_feestructure_changelist' %}" class="btn btn-outline-primary w-100 mb-2">
+                <i class="bi bi-calculator me-2"></i>Fee Structure
+            </a>
+            <a href="{% url 'admin:finance_discount_changelist' %}" class="btn btn-outline-primary w-100">
+                <i class="bi bi-percent me-2"></i>Discounts
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="data-table">
+            <h5 class="mb-4"><i class="bi bi-people me-2"></i>User Management</h5>
+            <a href="{% url 'admin:accounts_user_changelist' %}" class="btn btn-gradient w-100 mb-2">
+                <i class="bi bi-person me-2"></i>Manage Users
+            </a>
+            <a href="{% url 'admin:staff_department_changelist' %}" class="btn btn-outline-primary w-100 mb-2">
+                <i class="bi bi-diagram-3 me-2"></i>Departments
+            </a>
+            <a href="{% url 'admin:staff_designation_changelist' %}" class="btn btn-outline-primary w-100">
+                <i class="bi bi-award me-2"></i>Designations
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'school/base.html' %}
+
+{% block page_title %}Hostel Management{% endblock %}
+
+{% block content %}
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="stat-card primary">
+            <div class="icon">
+                <i class="bi bi-building-fill"></i>
+            </div>
+            <h3>0</h3>
+            <p>Total Hostels</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card success">
+            <div class="icon">
+                <i class="bi bi-door-open-fill"></i>
+            </div>
+            <h3>0</h3>
+            <p>Total Rooms</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card warning">
+            <div class="icon">
+                <i class="bi bi-people-fill"></i>
+            </div>
+            <h3>0</h3>
+            <p>Occupants</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card danger">
+            <div class="icon">
+                <i class="bi bi-exclamation-circle"></i>
+            </div>
+            <h3>0</h3>
+            <p>Complaints</p>
+        </div>
+    </div>
+</div>
+
+<div class="data-table">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="mb-0"><i class="bi bi-building-fill me-2"></i>Hostel Management</h5>
+        <a href="{% url 'admin:hostel_hostel_add' %}" class="btn btn-gradient">
+            <i class="bi bi-plus-circle me-2"></i>Add Hostel
+        </a>
+    </div>
+    <p class="text-center text-muted py-5">Hostel management interface. Manage hostels and rooms via admin panel.</p>
+</div>
+{% endblock %}
