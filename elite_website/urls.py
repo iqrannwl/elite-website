@@ -39,6 +39,7 @@ urlpatterns = [
     path('school/', include('accounts.urls')),
     path('school/academics/', include('academics.urls')),
     path('school/staff/', include('staff.urls')),
+    path('school/reports/', include('reports.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
 
