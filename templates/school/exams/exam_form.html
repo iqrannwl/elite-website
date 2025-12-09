@@ -1,0 +1,100 @@
+{% extends 'school/base.html' %}
+
+{% block page_title %}{% if form.instance.pk %}Edit{% else %}Create New{% endif %} Examination{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="data-table">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="mb-0">
+                    <i class="bi bi-file-earmark-text me-2"></i>
+                    {% if form.instance.pk %}Edit Examination{% else %}Create New Examination{% endif %}
+                </h5>
+                <a href="{% url 'academics:exam_list' %}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left me-2"></i>Back
+                </a>
+            </div>
+
+            {% if form.errors %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <strong><i class="bi bi-exclamation-triangle me-2"></i>Please correct the errors:</strong>
+                <ul class="mb-0 mt-2">
+                    {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                    <li>{{ field }}: {{ error }}</li>
+                    {% endfor %}
+                    {% endfor %}
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h6 class="mb-0"><i class="bi bi-info-circle me-2"></i>Examination Details</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Exam Name <span class="text-danger">*</span></label>
+                                {{ form.name }}
+                                <small class="form-text text-muted">e.g., Mid-Term, Final Exam</small>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Exam Type <span class="text-danger">*</span></label>
+                                {{ form.exam_type }}
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Class <span class="text-danger">*</span></label>
+                                {{ form.class_name }}
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Subject <span class="text-danger">*</span></label>
+                                {{ form.subject }}
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Academic Year</label>
+                                {{ form.academic_year }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Exam Date <span class="text-danger">*</span></label>
+                                {{ form.exam_date }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Duration (minutes)</label>
+                                {{ form.duration }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Total Marks</label>
+                                {{ form.total_marks }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Passing Marks</label>
+                                {{ form.passing_marks }}
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Description</label>
+                                {{ form.description }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'academics:exam_list' %}" class="btn btn-outline-secondary">
+                        <i class="bi bi-x-circle me-2"></i>Cancel
+                    </a>
+                    <button type="submit" class="btn btn-gradient">
+                        <i class="bi bi-check-circle me-2"></i>
+                        {% if form.instance.pk %}Update{% else %}Create{% endif %} Exam
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

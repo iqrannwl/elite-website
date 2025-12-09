@@ -1,0 +1,121 @@
+{% extends 'school/base.html' %}
+
+{% block page_title %}{% if form.instance.pk %}Edit{% else %}Add New{% endif %} Book{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="data-table">
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="mb-0">
+                    <i class="bi bi-book-fill me-2"></i>
+                    {% if form.instance.pk %}Edit Book{% else %}Add New Book{% endif %}
+                </h5>
+                <a href="{% url 'library:book_list' %}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left me-2"></i>Back to Books
+                </a>
+            </div>
+
+            <!-- Error Messages -->
+            {% if form.errors %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <strong><i class="bi bi-exclamation-triangle me-2"></i>Please correct the errors below:</strong>
+                <ul class="mb-0 mt-2">
+                    {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                    <li>{{ field }}: {{ error }}</li>
+                    {% endfor %}
+                    {% endfor %}
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endif %}
+
+            <!-- Form -->
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h6 class="mb-0"><i class="bi bi-info-circle me-2"></i>Book Information</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Book Title <span class="text-danger">*</span></label>
+                                {{ form.title }}
+                                {% if form.title.errors %}
+                                <div class="text-danger small">{{ form.title.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">ISBN <span class="text-danger">*</span></label>
+                                {{ form.isbn }}
+                                {% if form.isbn.errors %}
+                                <div class="text-danger small">{{ form.isbn.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Author <span class="text-danger">*</span></label>
+                                {{ form.author }}
+                                {% if form.author.errors %}
+                                <div class="text-danger small">{{ form.author.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Publisher</label>
+                                {{ form.publisher }}
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Category <span class="text-danger">*</span></label>
+                                {{ form.category }}
+                                {% if form.category.errors %}
+                                <div class="text-danger small">{{ form.category.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Total Copies</label>
+                                {{ form.total_copies }}
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Available Copies</label>
+                                {{ form.available_copies }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Publication Year</label>
+                                {{ form.publication_year }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Price</label>
+                                {{ form.price }}
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Description</label>
+                                {{ form.description }}
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-check">
+                                    {{ form.is_available }}
+                                    <label class="form-check-label">Available for Issue</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'library:book_list' %}" class="btn btn-outline-secondary">
+                        <i class="bi bi-x-circle me-2"></i>Cancel
+                    </a>
+                    <button type="submit" class="btn btn-gradient">
+                        <i class="bi bi-check-circle me-2"></i>
+                        {% if form.instance.pk %}Update Book{% else %}Add Book{% endif %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

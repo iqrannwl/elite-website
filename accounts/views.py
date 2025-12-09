@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Count, Sum, Q
 from django.utils import timezone
+from django.core.paginator import Paginator
 from datetime import datetime, timedelta
 
 from students.models import Student
@@ -75,6 +76,20 @@ def students_list(request):
         status='ACTIVE'
     ).select_related('user', 'current_class', 'section', 'campus')
     
+    # Statistics
+    total_students = students.count()
+    male_count = students.filter(user__gender='M').count()
+    female_count = students.filter(user__gender='F').count()
+    
+    # Class distribution for charts
+    class_distribution = Student.objects.filter(status='ACTIVE') \
+        .values('current_class__name') \
+        .annotate(count=Count('id')) \
+        .order_by('current_class__numeric_value')
+    
+    class_labels = [item['current_class__name'] for item in class_distribution if item['current_class__name']]
+    class_data = [item['count'] for item in class_distribution if item['current_class__name']]
+    
     # Filter by class if provided
     class_filter = request.GET.get('class')
     if class_filter:
@@ -89,9 +104,19 @@ def students_list(request):
             Q(user__last_name__icontains=search)
         )
     
+    # Pagination
+    paginator = Paginator(students, 10)  # Show 10 students per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
     context = {
-        'students': students,
+        'students': page_obj,
         'classes': Class.objects.filter(is_active=True),
+        'total_students': total_students,
+        'male_count': male_count,
+        'female_count': female_count,
+        'class_labels': class_labels,
+        'class_data': class_data,
     }
     
     return render(request, 'school/students/list.html', context)
@@ -103,7 +128,7 @@ def student_add(request):
     from students.forms import StudentForm
     
     if request.method == 'POST':
-        form = StudentForm(request.POST)
+        form = StudentForm(request.POST, request.FILES)
         if form.is_valid():
             student = form.save()
             messages.success(request, f'Student {student.user.get_full_name()} added successfully!')
@@ -125,7 +150,7 @@ def student_edit(request, pk):
     student = get_object_or_404(Student, pk=pk)
     
     if request.method == 'POST':
-        form = StudentForm(request.POST, instance=student)
+        form = StudentForm(request.POST, request.FILES, instance=student)
         if form.is_valid():
             student = form.save()
             messages.success(request, f'Student {student.user.get_full_name()} updated successfully!')

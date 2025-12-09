@@ -8,6 +8,7 @@ class StudentForm(forms.ModelForm):
     first_name = forms.CharField(max_length=150, required=True)
     last_name = forms.CharField(max_length=150, required=True)
     email = forms.EmailField(required=True)
+    profile_picture = forms.ImageField(required=False)
     date_of_birth = forms.DateField(
         required=False,
         widget=forms.DateInput(attrs={'type': 'date'})
@@ -52,6 +53,8 @@ class StudentForm(forms.ModelForm):
                 field.widget.attrs['class'] = 'form-check-input'
             elif isinstance(field.widget, forms.Select):
                 field.widget.attrs['class'] = 'form-select'
+            elif isinstance(field.widget, forms.FileInput):
+                field.widget.attrs['class'] = 'form-control'
             else:
                 field.widget.attrs['class'] = 'form-control'
         
@@ -60,6 +63,7 @@ class StudentForm(forms.ModelForm):
             self.fields['first_name'].initial = self.instance.user.first_name
             self.fields['last_name'].initial = self.instance.user.last_name
             self.fields['email'].initial = self.instance.user.email
+            self.fields['profile_picture'].initial = self.instance.user.profile_picture
             self.fields['date_of_birth'].initial = self.instance.user.date_of_birth
             self.fields['gender'].initial = self.instance.user.gender
             self.fields['phone_number'].initial = self.instance.user.phone_number
@@ -95,6 +99,8 @@ class StudentForm(forms.ModelForm):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         user.email = self.cleaned_data['email']
+        if self.cleaned_data.get('profile_picture'):
+            user.profile_picture = self.cleaned_data['profile_picture']
         user.date_of_birth = self.cleaned_data.get('date_of_birth')
         user.gender = self.cleaned_data.get('gender')
         user.phone_number = self.cleaned_data.get('phone_number')

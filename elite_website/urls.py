@@ -37,6 +37,8 @@ urlpatterns = [
     
     # School Management System
     path('school/', include('accounts.urls')),
+    path('school/academics/', include('academics.urls')),
+    path('school/staff/', include('staff.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
 

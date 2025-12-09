@@ -1,6 +1,6 @@
 {% extends 'school/base.html' %}
 
-{% block page_title %}{% if form.instance.pk %}Edit{% else %}Create New{% endif %} Announcement{% endblock %}
+{% block page_title %}{% if form.instance.pk %}Edit{% else %}Add New{% endif %} Route{% endblock %}
 
 {% block content %}
 <div class="row">
@@ -8,10 +8,10 @@
         <div class="data-table">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h5 class="mb-0">
-                    <i class="bi bi-megaphone me-2"></i>
-                    {% if form.instance.pk %}Edit Announcement{% else %}Create New Announcement{% endif %}
+                    <i class="bi bi-signpost-2 me-2"></i>
+                    {% if form.instance.pk %}Edit Route{% else %}Add New Route{% endif %}
                 </h5>
-                <a href="{% url 'communication:announcement_list' %}" class="btn btn-outline-secondary">
+                <a href="{% url 'transport:route_list' %}" class="btn btn-outline-secondary">
                     <i class="bi bi-arrow-left me-2"></i>Back
                 </a>
             </div>
@@ -34,28 +34,37 @@
                 {% csrf_token %}
 
                 <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h6 class="mb-0"><i class="bi bi-info-circle me-2"></i>Route Information</h6>
+                    </div>
                     <div class="card-body">
                         <div class="row g-3">
-                            <div class="col-md-12">
-                                <label class="form-label">Title <span class="text-danger">*</span></label>
-                                {{ form.title }}
-                            </div>
-                            <div class="col-md-12">
-                                <label class="form-label">Message <span class="text-danger">*</span></label>
-                                {{ form.message }}
+                            <div class="col-md-6">
+                                <label class="form-label">Route Name <span class="text-danger">*</span></label>
+                                {{ form.name }}
+                                <small class="form-text text-muted">e.g., Route A, Downtown Route</small>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Type</label>
-                                {{ form.type }}
+                                <label class="form-label">Route Number</label>
+                                {{ form.route_number }}
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Audience</label>
-                                {{ form.audience }}
+                                <label class="form-label">Vehicle</label>
+                                {{ form.vehicle }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Fare</label>
+                                {{ form.fare }}
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Description</label>
+                                {{ form.description }}
+                                <small class="form-text text-muted">Route details and stops</small>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-check">
                                     {{ form.is_active }}
-                                    <label class="form-check-label">Active</label>
+                                    <label class="form-check-label">Active Route</label>
                                 </div>
                             </div>
                         </div>
@@ -63,12 +72,12 @@
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <a href="{% url 'communication:announcement_list' %}" class="btn btn-outline-secondary">
+                    <a href="{% url 'transport:route_list' %}" class="btn btn-outline-secondary">
                         <i class="bi bi-x-circle me-2"></i>Cancel
                     </a>
                     <button type="submit" class="btn btn-gradient">
                         <i class="bi bi-check-circle me-2"></i>
-                        {% if form.instance.pk %}Update{% else %}Create{% endif %}
+                        {% if form.instance.pk %}Update{% else %}Add{% endif %} Route
                     </button>
                 </div>
             </form>

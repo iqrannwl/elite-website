@@ -25,8 +25,8 @@
                 </div>
 
                 <div class="col-md-3">
-                    <a href="{% url 'admin:staff_staff_add' %}" class="btn btn-success w-100">
-                        <i class="bi bi-plus-circle me-2"></i>Add New Staff
+                    <a href="{% url 'staff:staff_create' %}" class="btn btn-success w-100">
+                        <i class="bi bi-plus-circle me-2"></i>Add New
                     </a>
                 </div>
             </form>
@@ -41,7 +41,7 @@
             <div class="icon">
                 <i class="bi bi-people-fill"></i>
             </div>
-            <h3>{{ staff.count }}</h3>
+            <h3>{{ staff.paginator.count }}</h3>
             <p>Total Staff</p>
         </div>
     </div>
@@ -51,7 +51,7 @@
             <div class="icon">
                 <i class="bi bi-person-check-fill"></i>
             </div>
-            <h3>{{ staff.count }}</h3>
+            <h3>{{ staff.paginator.count }}</h3>
             <p>Active Staff</p>
         </div>
     </div>
@@ -129,7 +129,7 @@
                     </td>
                     <td>
                         <div class="btn-group btn-group-sm" role="group">
-                            <a href="{% url 'admin:staff_staff_change' member.pk %}" class="btn btn-outline-success"
+                            <a href="{% url 'staff:staff_edit' member.pk %}" class="btn btn-outline-success"
                                 title="Edit">
                                 <i class="bi bi-pencil"></i>
                             </a>
@@ -147,5 +147,31 @@
             </tbody>
         </table>
     </div>
+</div>
+
+<!-- Pagination -->
+{% if staff.has_other_pages %}
+<nav aria-label="Page navigation" class="mt-4">
+    <ul class="pagination justify-content-center">
+        {% if staff.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ staff.previous_page_number }}">Previous</a>
+        </li>
+        {% endif %}
+
+        {% for num in staff.paginator.page_range %}
+        <li class="page-item {% if staff.number == num %}active{% endif %}">
+            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+        </li>
+        {% endfor %}
+
+        {% if staff.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ staff.next_page_number }}">Next</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
 </div>
 {% endblock %}

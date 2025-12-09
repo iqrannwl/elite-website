@@ -1,23 +1,21 @@
 {% extends 'school/base.html' %}
 
-{% block page_title %}{% if form.instance.pk %}Edit{% else %}Add New{% endif %} Class{% endblock %}
+{% block page_title %}{% if form.instance.pk %}Edit{% else %}Add New{% endif %} Hostel{% endblock %}
 
 {% block content %}
 <div class="row">
     <div class="col-12">
         <div class="data-table">
-            <!-- Header -->
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h5 class="mb-0">
                     <i class="bi bi-building me-2"></i>
-                    {% if form.instance.pk %}Edit Class{% else %}Add New Class{% endif %}
+                    {% if form.instance.pk %}Edit Hostel{% else %}Add New Hostel{% endif %}
                 </h5>
-                <a href="{% url 'academics:class_list' %}" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left me-2"></i>Back to Classes
+                <a href="{% url 'hostel:hostel_list' %}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left me-2"></i>Back to Hostels
                 </a>
             </div>
 
-            <!-- Error Messages -->
             {% if form.errors %}
             <div class="alert alert-danger alert-dismissible fade show">
                 <strong><i class="bi bi-exclamation-triangle me-2"></i>Please correct the errors below:</strong>
@@ -32,65 +30,55 @@
             </div>
             {% endif %}
 
-            <!-- Form -->
             <form method="post">
                 {% csrf_token %}
 
                 <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h6 class="mb-0"><i class="bi bi-info-circle me-2"></i>Hostel Information</h6>
+                    </div>
                     <div class="card-body">
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label class="form-label">Class Name <span class="text-danger">*</span></label>
+                                <label class="form-label">Hostel Name <span class="text-danger">*</span></label>
                                 {{ form.name }}
-                                <small class="form-text text-muted">e.g., Grade 1, Class 10, etc.</small>
                                 {% if form.name.errors %}
                                 <div class="text-danger small">{{ form.name.errors.0 }}</div>
                                 {% endif %}
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Numeric Value <span class="text-danger">*</span></label>
-                                {{ form.numeric_value }}
-                                <small class="form-text text-muted">For sorting purposes (e.g., 1, 2, 3...)</small>
-                                {% if form.numeric_value.errors %}
-                                <div class="text-danger small">{{ form.numeric_value.errors.0 }}</div>
-                                {% endif %}
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Campus</label>
-                                {{ form.campus }}
-                                {% if form.campus.errors %}
-                                <div class="text-danger small">{{ form.campus.errors.0 }}</div>
-                                {% endif %}
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Class Teacher</label>
-                                {{ form.class_teacher }}
-                                {% if form.class_teacher.errors %}
-                                <div class="text-danger small">{{ form.class_teacher.errors.0 }}</div>
-                                {% endif %}
+                                <label class="form-label">Type <span class="text-danger">*</span></label>
+                                {{ form.type }}
                             </div>
                             <div class="col-md-12">
-                                <label class="form-label">Description</label>
-                                {{ form.description }}
+                                <label class="form-label">Address</label>
+                                {{ form.address }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Warden Name</label>
+                                {{ form.warden_name }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Warden Phone</label>
+                                {{ form.warden_phone }}
                             </div>
                             <div class="col-md-12">
                                 <div class="form-check">
                                     {{ form.is_active }}
-                                    <label class="form-check-label">Active Class</label>
+                                    <label class="form-check-label">Active Hostel</label>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Form Actions -->
                 <div class="d-flex justify-content-between">
-                    <a href="{% url 'academics:class_list' %}" class="btn btn-outline-secondary">
+                    <a href="{% url 'hostel:hostel_list' %}" class="btn btn-outline-secondary">
                         <i class="bi bi-x-circle me-2"></i>Cancel
                     </a>
                     <button type="submit" class="btn btn-gradient">
                         <i class="bi bi-check-circle me-2"></i>
-                        {% if form.instance.pk %}Update Class{% else %}Add Class{% endif %}
+                        {% if form.instance.pk %}Update{% else %}Add{% endif %} Hostel
                     </button>
                 </div>
             </form>

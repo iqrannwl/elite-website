@@ -1,6 +1,6 @@
 {% extends 'school/base.html' %}
 
-{% block page_title %}{% if form.instance.pk %}Edit{% else %}Create New{% endif %} Announcement{% endblock %}
+{% block page_title %}Mark Attendance{% endblock %}
 
 {% block content %}
 <div class="row">
@@ -8,10 +8,9 @@
         <div class="data-table">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h5 class="mb-0">
-                    <i class="bi bi-megaphone me-2"></i>
-                    {% if form.instance.pk %}Edit Announcement{% else %}Create New Announcement{% endif %}
+                    <i class="bi bi-calendar-check me-2"></i>Mark Attendance
                 </h5>
-                <a href="{% url 'communication:announcement_list' %}" class="btn btn-outline-secondary">
+                <a href="{% url 'academics:attendance_list' %}" class="btn btn-outline-secondary">
                     <i class="bi bi-arrow-left me-2"></i>Back
                 </a>
             </div>
@@ -34,41 +33,45 @@
                 {% csrf_token %}
 
                 <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h6 class="mb-0"><i class="bi bi-filter me-2"></i>Attendance Details</h6>
+                    </div>
                     <div class="card-body">
                         <div class="row g-3">
-                            <div class="col-md-12">
-                                <label class="form-label">Title <span class="text-danger">*</span></label>
-                                {{ form.title }}
+                            <div class="col-md-4">
+                                <label class="form-label">Date <span class="text-danger">*</span></label>
+                                {{ form.date }}
                             </div>
-                            <div class="col-md-12">
-                                <label class="form-label">Message <span class="text-danger">*</span></label>
-                                {{ form.message }}
+                            <div class="col-md-4">
+                                <label class="form-label">Class <span class="text-danger">*</span></label>
+                                {{ form.class_name }}
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Section</label>
+                                {{ form.section }}
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Type</label>
-                                {{ form.type }}
+                                <label class="form-label">Student <span class="text-danger">*</span></label>
+                                {{ form.student }}
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Audience</label>
-                                {{ form.audience }}
+                                <label class="form-label">Status <span class="text-danger">*</span></label>
+                                {{ form.status }}
                             </div>
                             <div class="col-md-12">
-                                <div class="form-check">
-                                    {{ form.is_active }}
-                                    <label class="form-check-label">Active</label>
-                                </div>
+                                <label class="form-label">Remarks</label>
+                                {{ form.remarks }}
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <a href="{% url 'communication:announcement_list' %}" class="btn btn-outline-secondary">
+                    <a href="{% url 'academics:attendance_list' %}" class="btn btn-outline-secondary">
                         <i class="bi bi-x-circle me-2"></i>Cancel
                     </a>
                     <button type="submit" class="btn btn-gradient">
-                        <i class="bi bi-check-circle me-2"></i>
-                        {% if form.instance.pk %}Update{% else %}Create{% endif %}
+                        <i class="bi bi-check-circle me-2"></i>Mark Attendance
                     </button>
                 </div>
             </form>

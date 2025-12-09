@@ -1,0 +1,104 @@
+{% extends 'school/base.html' %}
+
+{% block page_title %}{% if form.instance.pk %}Edit{% else %}Record New{% endif %} Payment{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="data-table">
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="mb-0">
+                    <i class="bi bi-credit-card me-2"></i>
+                    {% if form.instance.pk %}Edit Payment{% else %}Record New Payment{% endif %}
+                </h5>
+                <a href="{% url 'finance:payment_list' %}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left me-2"></i>Back to Payments
+                </a>
+            </div>
+
+            <!-- Error Messages -->
+            {% if form.errors %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <strong><i class="bi bi-exclamation-triangle me-2"></i>Please correct the errors below:</strong>
+                <ul class="mb-0 mt-2">
+                    {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                    <li>{{ field }}: {{ error }}</li>
+                    {% endfor %}
+                    {% endfor %}
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endif %}
+
+            <!-- Form -->
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="card mb-4">
+                    <div class="card-header bg-success text-white">
+                        <h6 class="mb-0"><i class="bi bi-cash me-2"></i>Payment Details</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Invoice <span class="text-danger">*</span></label>
+                                {{ form.invoice }}
+                                {% if form.invoice.errors %}
+                                <div class="text-danger small">{{ form.invoice.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Amount Paid <span class="text-danger">*</span></label>
+                                {{ form.amount }}
+                                {% if form.amount.errors %}
+                                <div class="text-danger small">{{ form.amount.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Payment Date <span class="text-danger">*</span></label>
+                                {{ form.payment_date }}
+                                {% if form.payment_date.errors %}
+                                <div class="text-danger small">{{ form.payment_date.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Payment Method <span class="text-danger">*</span></label>
+                                {{ form.payment_method }}
+                                {% if form.payment_method.errors %}
+                                <div class="text-danger small">{{ form.payment_method.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Transaction ID</label>
+                                {{ form.transaction_id }}
+                                <small class="form-text text-muted">For online/card payments</small>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Receipt Number</label>
+                                {{ form.receipt_number }}
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Notes</label>
+                                {{ form.notes }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'finance:payment_list' %}" class="btn btn-outline-secondary">
+                        <i class="bi bi-x-circle me-2"></i>Cancel
+                    </a>
+                    <button type="submit" class="btn btn-gradient">
+                        <i class="bi bi-check-circle me-2"></i>
+                        {% if form.instance.pk %}Update Payment{% else %}Record Payment{% endif %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

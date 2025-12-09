@@ -22,13 +22,13 @@ class StaffForm(forms.ModelForm):
     class Meta:
         model = Staff
         fields = [
-            'employee_id', 'department', 'designation', 'campus', 'date_of_joining',
+            'employee_id', 'department', 'designation', 'campus', 'joining_date',
             'employment_type', 'qualification', 'experience_years', 'basic_salary',
             'is_active', 'emergency_contact_name', 'emergency_contact_phone',
-            'emergency_contact_relation', 'bank_name', 'account_number', 'account_holder_name'
+            'emergency_contact_relation', 'bank_name', 'bank_account_number', 'bank_ifsc_code'
         ]
         widgets = {
-            'date_of_joining': forms.DateInput(attrs={'type': 'date'}),
+            'joining_date': forms.DateInput(attrs={'type': 'date'}),
         }
     
     def __init__(self, *args, **kwargs):
